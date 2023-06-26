@@ -1,0 +1,373 @@
+[
+    {
+        "name": "Almiraj",
+        "tags": "Small Beast, Unaligned",
+        "description": "An almiraj (pronounced AWL-meer-ahj) is a large, timid rabbit with a 1-foot-long spiral horn emerging from its forehead, not unlike the horn of a unicorn. If driven to attack, it tries to spear enemies with its horn.",
+        "tokenURL": "https://5e.tools/img/ToA/Almiraj.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d6",
+        "ac": 13,
+        "strength": 2,
+        "dexterity": 16,
+        "constitution": 10,
+        "intelligence": 2,
+        "wisdom": 14,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Horn",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1d4 + 3",
+                "damagetype": "piercing"
+            }
+        ]
+    },
+    {
+        "name": "Awakened Rat",
+        "tags": "Tiny Beast, Unaligned",
+        "description": "An awakened rat is a small creature that was magically transformed from an ordinary rat into a more intelligent being. It retains its rat-like appearance but possesses enhanced senses and the ability to understand and communicate in Common.",
+        "tokenURL": "https://5e.tools/img/WDH/Awakened%20Rat.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d4",
+        "ac": 10,
+        "strength": 2,
+        "dexterity": 11,
+        "constitution": 9,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 4,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+0",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ]
+    },    
+    {
+        "name": "Awakened Shrub",
+        "tags": "Small Plant, Unaligned",
+        "description": "An awakened shrub is an ordinary shrub given sentience and mobility by the awaken spell or similar magic.",
+        "tokenURL": "https://5e.tools/img/MM/Awakened%20Shrub.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "3d6",
+        "ac": 9,
+        "strength": 3,
+        "dexterity": 8,
+        "constitution": 11,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 6,
+        "dmgVulnerabilities": "fire",
+        "dmgResistances": "piercing",
+        "actions": [
+            {
+                "name": "Rake",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": "1d4 - 1",
+                "damagetype": "slashing"
+            }
+        ]
+    },
+    {
+        "name": "Baboon",
+        "tags": "Small Beast, Unaligned",
+        "description": "The baboon is a small, agile primate known for its climbing abilities. It travels in troops, relying on its pack tactics to gain an advantage in combat.",
+        "tokenURL": "https://5e.tools/img/MM/Baboon.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d6",
+        "ac": 12,
+        "strength": 8,
+        "dexterity": 14,
+        "constitution": 11,
+        "intelligence": 4,
+        "wisdom": 12,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": "1d4 - 1",
+                "damagetype": "piercing"
+            }
+        ]
+    },
+    {
+        "name": "Badger",
+        "tags": "Tiny Beast, Unaligned",
+        "description": "The badger is a small and tenacious mammal known for its strong jaws and burrowing capabilities. It has keen senses, particularly in smell, which it relies on for hunting and survival.",
+        "tokenURL": "https://5e.tools/img/MM/Badger.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d4 + 1",
+        "ac": 10,
+        "strength": 4,
+        "dexterity": 11,
+        "constitution": 12,
+        "intelligence": 2,
+        "wisdom": 12,
+        "charisma": 5,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ]
+    },
+    {
+        "name": "Bat",
+        "tags": "Tiny Beast, Unaligned",
+        "description": "The bat is a small flying creature known for its ability to navigate and hunt using echolocation. It relies on its keen hearing to locate prey.",
+        "tokenURL": "https://5e.tools/img/MM/Bat.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d4 - 1",
+        "ac": 12,
+        "strength": 2,
+        "dexterity": 15,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 12,
+        "charisma": 4,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+0",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ]
+    },
+    {
+        "name": "Campestri",
+        "tags": "Tiny Plant, Unaligned",
+        "description": "The campestri is a small plant known for its ability to mimic voices and songs. It communicates through nasal falsetto sounds and possesses spores that can incapacitate creatures.",
+        "tokenURL": "https://5e.tools/img/WBtW/Campestri.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d4",
+        "ac": 12,
+        "strength": 1,
+        "dexterity": 7,
+        "constitution": 10,
+        "intelligence": 4,
+        "wisdom": 10,
+        "charisma": 8,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Head Butt",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+0",
+                "damage": "1",
+                "damagetype": "bludgeoning"
+            }
+        ]
+    },
+    {
+        "name": "Cat",
+        "tags": "Tiny Beast, Unaligned",
+        "description": "The cat is a small, agile creature known for its keen senses and stealthy movements. It can be found in various environments such as deserts, forests, grasslands, and urban areas.",
+        "tokenURL": "https://5e.tools/img/MM/Cat.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d4",
+        "ac": 12,
+        "strength": 3,
+        "dexterity": 15,
+        "constitution": 10,
+        "intelligence": 3,
+        "wisdom": 12,
+        "charisma": 7,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Claws",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+0",
+                "damage": "1",
+                "damagetype": "slashing"
+            }
+        ],
+        "environment": "Desert, Forest, Grassland, Urban"
+    },
+    {
+        "name": "Commoner",
+        "tags": "Medium Humanoid (Any Race), Any Alignment",
+        "description": "A commoner is an ordinary individual who lacks any significant training or combat abilities. They can be found in various environments and are usually proficient in one language, commonly Common.",
+        "tokenURL": "https://5e.tools/img/MM/Commoner.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d8",
+        "ac": 10,
+        "strength": 10,
+        "dexterity": 10,
+        "constitution": 10,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Club",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d4",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "environment": "Arctic, Coastal, Desert, Forest, Grassland, Hill, Urban"
+    },
+    {
+        "name": "Constructed Commoner",
+        "tags": "Medium Construct",
+        "description": "The Constructed Commoner is an artificial being designed to resemble a regular commoner. It lacks the biological needs and vulnerabilities of a living creature.",
+        "tokenURL": "https://5e.tools/img/CM/Constructed%20Commoner.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d8 + 2",
+        "ac": 15,
+        "strength": 10,
+        "dexterity": 10,
+        "constitution": 15,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": "poison",
+        "conditionImmunities": "exhaustion, poisoned",
+        "senses": "passive Perception 10",
+        "languages": "Common",
+        "actions": [
+            {
+                "name": "Club",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d4",
+                "damagetype": "bludgeoning"
+            }
+        ]
+    },
+    {
+        "name": "Crab",
+        "tags": "Tiny Beast, Unaligned",
+        "description": "The crab is a small crustacean commonly found in coastal areas. It has a tough exoskeleton and uses its claws to defend itself.",
+        "tokenURL": "https://5e.tools/img/MM/Crab.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d4",
+        "ac": 11,
+        "strength": 2,
+        "dexterity": 11,
+        "constitution": 10,
+        "intelligence": 1,
+        "wisdom": 8,
+        "charisma": 2,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Claw",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+0",
+                "damage": "1",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "environment": "Coastal"
+    },
+    {
+        "name": "Cranium Rat",
+        "tags": "Tiny Aberration, Unaligned",
+        "description": "The cranium rat is a small, aberrant creature with telepathic abilities. It dwells in the Underdark and urban areas, using its telepathic shroud to protect itself from detection.",
+        "tokenURL": "https://5e.tools/img/MPMM/Cranium%20Rat.png",
+        "challengerating": 0,
+        "xp": 10,
+        "health": "1d4",
+        "ac": 12,
+        "strength": 2,
+        "dexterity": 14,
+        "constitution": 10,
+        "intelligence": 4,
+        "wisdom": 11,
+        "charisma": 8,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": [
+            {
+                "name": "Illumination",
+                "description": "The cranium rat sheds dim light from its exposed brain in a 5-foot radius or extinguishes the light."
+            }
+        ],
+        "specialAbilities": [
+            {
+                "name": "Telepathic Shroud",
+                "description": "The cranium rat is immune to any effect that would sense its emotions or read its thoughts, as well as to all divination spells."
+            }
+        ],
+        "environment": "Underdark, Urban"
+    },                    
+    {
+        "name": "Ambush Drake",
+        "tags": "Medium Dragon, Unaligned",
+        "description": "The Ambush Drake is a medium-sized dragon known for its stealth and cunning. It has a sleek body covered in natural armor, allowing it to move swiftly and quietly.",
+        "tokenURL": "https://5e.tools/img/HotDQ/Ambush%20Drake.png",
+        "challengerating": 0.5,
+        "xp": 100,
+        "health": "4d6 + 8",
+        "ac": 13,
+        "strength": 13,
+        "dexterity": 15,
+        "constitution": 14,
+        "intelligence": 4,
+        "wisdom": 11,
+        "charisma": 6,
+        "dmgResistances": "poison",
+        "dmgVulnerabilities": null,
+        "actions": [
+            {
+            "name": "Bite",
+            "description": "Melee Weapon Attack",
+            "attackBonus": "+4",
+            "damage": "1d6 + 1",
+            "damagetype": "piercing"
+            }
+        ]
+    }
+]
