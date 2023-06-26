@@ -4,9 +4,10 @@ import time
 import keyboard
 from colorama import init, Fore, Back, Style
 import shutil
-from rich.align import Align
 from rich import console
 import re
+import os
+from game_state import get_my_character
 
 console = console.Console()
 
@@ -117,9 +118,9 @@ def display_healthbars(player, monster, monsterMaxHealth, MonsterCurrentHealth):
         MonsterCurrentHealth = 0
     slow_type(f" - {monster['name']}: {color_code}[{monster_health_bar:<10}]{Fore.RESET} {MonsterCurrentHealth}/{monsterMaxHealth}")
 
-def wait_for_input():
+def wait_for_input(text="Press any key to continue..."):
     # Wait for any key press
-    slow_type("Press any key to continue...", center=True, new_line=False, styles=["bold"])
+    slow_type(text, center=True, new_line=False, styles=["bold"])
     keyboard.read_key(suppress=True)
     print("")
 
@@ -154,6 +155,82 @@ def scroll_text(text, delay, center_text=False, rise_from_bottom=False):
             print(lines[j])
         
         time.sleep(delay)
+
+def get_terminal_size():
+    """Get the size of the terminal window."""
+    try:
+        size = os.get_terminal_size()
+        return size.columns, size.lines
+    except OSError:
+        return 80, 24  # Default size if getting terminal size fails
+    
+def show_game_menu(player):
+    """
+    Display the game menu to the player. 
+    player: The Player object representing the player's character.
+    """
+    while True:
+        # Print the menu options
+        slow_type("\n=== Game Menu ===")
+        slow_type("1. View Inventory")
+        slow_type("2. View XP Progression")
+        slow_type("3. [Other options can be added here]")
+        slow_type("0. Return to Game")
+        
+        # Get the player's choice
+        choice = input("Enter your choice: ")
+        
+        # Handle the player's choice
+        if choice == '1':
+            # View Inventory
+            if player.inventory:
+                slow_type("\nInventory:")
+                for item in player.inventory:
+                    slow_type(f"- {item['name']}: {item['description']}")
+            else:
+                slow_type("\nYour inventory is empty.")
+        
+        elif choice == '2':
+            # View XP Progression
+            slow_type(f"\nXP Progression: {player.xp}/{player.next_level_experience()}")
+            slow_type(f"Current Level: {player.level}")
+        
+        elif choice == '0':
+            # Return to Game
+            slow_type("Returning to game...\n")
+            break
+        
+        else:
+            # Invalid choice
+            slow_type("\nInvalid choice. Please try again.")
+
+def player_input(prompt, valid_options, is_numeric=False):
+    while True:
+        # Ask player for input
+        slow_type(prompt, new_line=False, styles=["bold underline"])
+        response = input().lower().strip()
+
+        # Handle 'menu' command
+        if response == 'menu':
+            # Display menu or perform other menu-related actions here
+            show_game_menu(get_my_character())
+            continue
+        
+        # Check if the response is valid
+        if is_numeric:
+            try:
+                choice = int(response)
+                if choice in valid_options:
+                    return choice
+            except ValueError:
+                pass
+        # Validates response against options list or first letter of a valid option.
+        elif response in valid_options or response in [option[0] for option in valid_options]:
+            return response
+        
+        # If input is invalid, ask again
+        slow_type("Invalid input, please try again.", styles=["bold", "red"])
+
 
 # slow_type("Google", link = "https://google.com")  # Link style
 # slow_type("Bold text", styles=["bold"])  # Bold style

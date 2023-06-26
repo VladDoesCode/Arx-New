@@ -27,6 +27,8 @@ class Character:
         self.weapons = []
         self.actions = []
         self.inventory = []
+        self.xp = 0
+        self.level = 1
 
     def modifier(self, attribute_value):
         """Calculate the modifier for an attribute value."""
@@ -108,7 +110,7 @@ class Character:
         else:
             player = self.load_character(choice)
             slow_type(f"Character '{choice}' loaded successfully!\n", styles=["bold", "Green"], center=True)
-            time.sleep(1)
+            time.sleep(.5)
             return player
 
     # Choose character name
@@ -337,6 +339,29 @@ class Character:
             return sum(sorted(rolls)[1:])
         else:
             return sum(rolls)
+        
+    def next_level_experience(self):
+        """Return the experience points needed for the next level."""
+        
+        # Table for experience points needed for each level
+        level_xp_table = [
+            0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000,
+            85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000
+        ]
+        
+        # Find the current level based on XP
+        current_level = self.level
+        for i, xp_needed in enumerate(level_xp_table):
+            if self.xp >= xp_needed:
+                current_level = i + 1
+            else:
+                break
+        
+        # Return the experience points needed for the next level
+        if current_level < 20:
+            return level_xp_table[current_level] - self.xp
+        else:
+            return 0  # At level 20, no more levels can be gained
 
 
 # while True:
