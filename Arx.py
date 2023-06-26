@@ -14,10 +14,10 @@ seperator = ('-' * term_width) + ('') # Text separator
 # Start the Game
 # Clear the screen
 print("\033c", end='')
-slow_type('Welcome to....', 0.1, center=True, styles=['bold'])
-slow_type(f"""\033[31m                                           
-      _____        _____                   
-  ___|\    \   ___|\    \  _____      _____
+slow_type('Welcome to....', 0.1, center=True, styles=['bold'], new_line=False)
+slow_type(f"""                                           
+     _____        _____                   
+ ___|\    \   ___|\    \  _____      _____
  /    /\    \ |    |\    \ \    \    /    / 
 |    |  |    ||    | |    | \    \  /    /  
 |    |__|    ||    |/____/   \____\/____/   
@@ -28,7 +28,7 @@ slow_type(f"""\033[31m
 |____|  |____||____| |____||____|    |____| 
   \(      )/    \(     )/    \(        )/   
    '      '      '     '      '        '    
-                                           \033[0m""",0.005, center=True)
+                                           """,0.005, center=True, styles=['red'], new_line=False)
 slow_type('A Text RPG created by Vladimir B.', center=True)
 slow_type('You will be able to create your own character, and fight monsters in turn-based combat.', center=True)
 slow_type('Notes: If your character dies, their save file will be deleted.', center=True, styles=['green'])
@@ -55,6 +55,3 @@ while True:
         break
     separator = ('-' * term_width) + ('') # Update separator width
     print(separator)
-
-# def get_my_character():
-#     return my_character

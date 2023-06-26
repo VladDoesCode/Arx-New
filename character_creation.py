@@ -3,9 +3,8 @@ import time
 import random
 import json
 import os
-from utils import slow_type, wait_for_input
+from utils import slow_type, wait_for_input, player_input
 from items import healing_potions, armors
-from colorama import init, Fore, Back, Style
 from tabulate import tabulate
 
 console = Console()
@@ -94,7 +93,7 @@ class Character:
                 elif 1 <= int(choice) <= len(choice_list):
                     print('\n')
                     return choice_list[int(choice) - 1]
-            slow_type('Invalid choice!')
+            slow_type('Invalid choice!\n', speed, styles=["bold", "Red"], center=center)
 
     # Load a character from a file
     def choose_character(self):
@@ -104,7 +103,8 @@ class Character:
             return None
         slow_type("Character Files:", center=True)
         character_files.append("Create new character")
-        choice = self.choose_from_list(character_files, "Choose a character file to load (enter the corresponding number), or choose 'Create new character': ", style=["bold", "underline"], center=True)
+        choice = player_input("Choose a character file to load (enter the corresponding number), or choose 'Create new character': ", character_files, is_list=True, center=True)
+        # choice = self.choose_from_list(character_files, "Choose a character file to load (enter the corresponding number), or choose 'Create new character': ", style=["bold", "underline"], center=True)
         if choice == "Create new character":
             return None
         else:
@@ -148,11 +148,12 @@ class Character:
         }
         while True:
             selected_race_category = self.choose_from_list(list(races.keys()), 'Choose a category of races (enter the corresponding number): ', speed=0, style=["bold", "underline"])
-            race_list = races[selected_race_category]
-            chosen_race = self.choose_from_list(race_list, 'Choose a race (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"])
-            if chosen_race is not None:
-                self.race = chosen_race
-                break
+            if selected_race_category is not None:
+                race_list = races[selected_race_category]
+                chosen_race = self.choose_from_list(race_list, 'Choose a race (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"])
+                if chosen_race is not None:
+                    self.race = chosen_race
+                    break
 
     # Choose character class
     def choose_class(self):
@@ -166,11 +167,12 @@ class Character:
         print(seperator)  # Separator
         while True:
             selected_class_category = self.choose_from_list(list(classes.keys()), 'Choose a category of classes (enter the corresponding number): ', speed=0, style=["bold", "underline"])
-            class_list = classes[selected_class_category]
-            chosen_class = self.choose_from_list(class_list, 'Choose a class (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"])
-            if chosen_class is not None:
-                self.character_class = chosen_class
-                break
+            if selected_class_category is not None:
+                class_list = classes[selected_class_category]
+                chosen_class = self.choose_from_list(class_list, 'Choose a class (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"])
+                if chosen_class is not None:
+                    self.character_class = chosen_class
+                    break
 
     # Choose character attributes and Assign AC and Health
     def choose_attributes(self):

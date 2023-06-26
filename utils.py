@@ -58,7 +58,7 @@ def slow_type(text, speed=0.013, new_line=True, styles=None, link=None, center=F
         # Get the width of the terminal window
         terminal_width = shutil.get_terminal_size().columns
         # Split the text into lines
-        lines = text.split("\n")
+        lines = text.splitlines(True)
         for line in lines:
             # Calculate the number of spaces to add before the line
             unstyled_len = len(re.sub(r'\x1B\[\d+m', '', line))
@@ -77,8 +77,9 @@ def slow_type(text, speed=0.013, new_line=True, styles=None, link=None, center=F
                 while time.perf_counter() - start_time < speed:
                     pass
             # Print a newline after the line
-            if "\n" in text:
-                print("")
+            if "\n" in line:
+                new_line = True
+                continue
     else:
         # Slowtype the text
         for char in text:
@@ -171,14 +172,15 @@ def show_game_menu(player):
     """
     while True:
         # Print the menu options
-        slow_type("\n=== Game Menu ===")
-        slow_type("1. View Inventory")
-        slow_type("2. View XP Progression")
-        slow_type("3. [Other options can be added here]")
-        slow_type("0. Return to Game")
+        slow_type("\n=== Game Menu ===", center=True, styles=["bold"])
+        slow_type("1. View Inventory", center=True)
+        slow_type("2. View XP Progression", center=True)
+        slow_type("3. [Other options can be added here]", center=True)
+        slow_type("0. Return to Game", center=True, styles=["underline"])
         
         # Get the player's choice
-        choice = input("Enter your choice: ")
+        slow_type("Enter your choice: ", new_line=False, center=True)
+        choice = input()
         
         # Handle the player's choice
         if choice == '1':
@@ -192,7 +194,9 @@ def show_game_menu(player):
         
         elif choice == '2':
             # View XP Progression
-            slow_type(f"\nXP Progression: {player.xp}/{player.next_level_experience()}")
+            xp_percentage = player.xp / player.next_level_experience()
+            xp_bar = "#" * max(int(xp_percentage * 10), 1 if player.health > 0 else 0)
+            slow_type(f"\nXP Progression: {xp_bar} {player.xp}/{player.next_level_experience()}")
             slow_type(f"Current Level: {player.level}")
         
         elif choice == '0':
@@ -204,10 +208,16 @@ def show_game_menu(player):
             # Invalid choice
             slow_type("\nInvalid choice. Please try again.")
 
-def player_input(prompt, valid_options, is_numeric=False):
+def player_input(prompt, valid_options, is_numeric=False, is_list=False, go_back=False, speed=0.013, style=None, center=False):
     while True:
-        # Ask player for input
-        slow_type(prompt, new_line=False, styles=["bold underline"])
+        # Display the valid options
+        if is_list:
+            for i, item in enumerate(valid_options):
+                slow_type(f"{i + 1}. {item}", speed, center=center)
+            if go_back:
+                slow_type("0. Go Back", speed, center=center)
+        # Ask the player for input
+        slow_type(prompt, new_line=False, styles=style, center=center)
         response = input().lower().strip()
 
         # Handle 'menu' command
@@ -215,7 +225,7 @@ def player_input(prompt, valid_options, is_numeric=False):
             # Display menu or perform other menu-related actions here
             show_game_menu(get_my_character())
             continue
-        
+
         # Check if the response is valid
         if is_numeric:
             try:
@@ -224,12 +234,19 @@ def player_input(prompt, valid_options, is_numeric=False):
                     return choice
             except ValueError:
                 pass
-        # Validates response against options list or first letter of a valid option.
-        elif response in valid_options or response in [option[0] for option in valid_options]:
-            return response
-        
+        elif is_list:
+            if go_back and response == '0':
+                return None
+            elif response.isdigit() and 1 <= int(response) <= len(valid_options):
+                return valid_options[int(response) - 1]
+            elif response in valid_options:
+                return response
+        else:
+            if response in valid_options or response in [option[0] for option in valid_options]:
+                return response
+
         # If input is invalid, ask again
-        slow_type("Invalid input, please try again.", styles=["bold", "red"])
+        slow_type("Invalid input, please try again.\n", styles=["bold", "red"], center=center)
 
 
 # slow_type("Google", link = "https://google.com")  # Link style

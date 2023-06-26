@@ -105,28 +105,28 @@ def combat(player, monsters):
 
                 # Simulate an attack roll
                 random_roll = random.randint(1, 20)
-                attack_roll = random_roll + int(player.actions[weapon_choice - 1]['attackBonus'])
+                attack_roll = random_roll + int(player.actions[weapon_choice - 1]['attackBonus']) # type: ignore
                 slow_type(f"You rolled a {Fore.GREEN if attack_roll >= monster['ac'] else Fore.RED}{Style.BRIGHT}{attack_roll}{Fore.RESET} against the {monster['name']}'s armor class of {Fore.RED if attack_roll >= monster['ac'] else Fore.GREEN}{Style.BRIGHT}{monster['ac']}{Fore.RESET}!")
 
                 # Check if the attack hits
                 if attack_roll >= monster['ac']:
                     # Calculate and apply damage
-                    player_damage = parse_damage(player.weapons[weapon_choice - 1]['damage'])
+                    player_damage = parse_damage(player.weapons[weapon_choice - 1]['damage']) # type: ignore
                     monsterCurrentHealth -= player_damage
 
                     # Determine attack flavor text based on weapon properties
-                    weapon_property = player.weapons[weapon_choice - 1]['property']
+                    weapon_property = player.weapons[weapon_choice - 1]['property'] # type: ignore
                     if weapon_property is None or weapon_property == 'Versatile':
-                        slow_type(f"You swing your {player.weapons[weapon_choice - 1]['name']} with might and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"])
+                        slow_type(f"You swing your {player.weapons[weapon_choice - 1]['name']} with might and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"]) # type: ignore
                     elif weapon_property == 'Thrown':
-                        slow_type(f"You throw your {player.weapons[weapon_choice - 1]['name']} with pinpoint precision and land it into the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"])
+                        slow_type(f"You throw your {player.weapons[weapon_choice - 1]['name']} with pinpoint precision and land it into the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"]) # type: ignore
                     elif weapon_property == 'Ranged':
-                        slow_type(f"You shoot your {player.weapons[weapon_choice - 1]['name']} with great accuracy and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"])
+                        slow_type(f"You shoot your {player.weapons[weapon_choice - 1]['name']} with great accuracy and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"]) # type: ignore
 
                     # Display health bars after player's turn
                     display_healthbars(player, monster, monsterMaxHealth, monsterCurrentHealth)
                 else:
-                    slow_type(f"You attempt to use your {player.weapons[weapon_choice - 1]['name']} but miss the {monster['name']}!")
+                    slow_type(f"You attempt to use your {player.weapons[weapon_choice - 1]['name']} but miss the {monster['name']}!") # type: ignore
 
             # Handling run action
             elif player_action in ['run', 'r']:
