@@ -4,12 +4,10 @@ import time
 import keyboard
 from colorama import init, Fore, Back, Style
 import shutil
-from rich import console
 import re
 import os
 from game_state import get_my_character
-
-console = console.Console()
+import inspect
 
 init()  # Initialize colorama
 
@@ -129,8 +127,8 @@ def scroll_text(text, delay, center_text=False, rise_from_bottom=False):
     lines = text.split('\n')
     height = len(lines)
     
-    # Get the console width
-    console_width = shutil.get_terminal_size().columns
+    # Get terminal size
+    term_width, term_height = get_terminal_size()
     
     for i in range(height):
         # Clear the screen
@@ -146,7 +144,7 @@ def scroll_text(text, delay, center_text=False, rise_from_bottom=False):
         if center_text:
             # Calculate the horizontal position to center the text
             line_width = len(lines[i])
-            horizontal_position = max((console_width - line_width) // 2, 0)
+            horizontal_position = max((term_width - line_width) // 2, 0)
             print(f"\033[{vertical_position};{horizontal_position}H", end='')
         else:
             print(f"\033[{vertical_position};1H", end='')
@@ -188,7 +186,10 @@ def show_game_menu(player):
             if player.inventory:
                 slow_type("\nInventory:")
                 for item in player.inventory:
-                    slow_type(f"- {item['name']}: {item['description']}")
+                    if 'description' in item:
+                        slow_type(f"- {item['name']}: {item['description']}")
+                    else:
+                        slow_type(f"- {item['name']}")
             else:
                 slow_type("\nYour inventory is empty.")
         
@@ -208,17 +209,19 @@ def show_game_menu(player):
             # Invalid choice
             slow_type("\nInvalid choice. Please try again.")
 
-def player_input(prompt, valid_options, is_numeric=False, is_list=False, go_back=False, speed=0.013, style=None, center=False):
+def player_input(prompt, valid_options, is_numeric=False, is_list=False, go_back=False, speed=0.013, styles=None, center=False, new_line=False):
     while True:
         # Display the valid options
         if is_list:
             for i, item in enumerate(valid_options):
-                slow_type(f"{i + 1}. {item}", speed, center=center)
+                slow_type(f"{i + 1}. {item}", speed=speed, center=center)
             if go_back:
-                slow_type("0. Go Back", speed, center=center)
+                slow_type("0. Go Back", speed=speed, center=center)
         # Ask the player for input
-        slow_type(prompt, new_line=False, styles=style, center=center)
+        slow_type(prompt, new_line=False, styles=styles, center=center, speed=speed)
         response = input().lower().strip()
+        if new_line:
+            print('')
 
         # Handle 'menu' command
         if response == 'menu':
@@ -248,6 +251,29 @@ def player_input(prompt, valid_options, is_numeric=False, is_list=False, go_back
         # If input is invalid, ask again
         slow_type("Invalid input, please try again.\n", styles=["bold", "red"], center=center)
 
+def seperator(first_line=True, last_line=True):
+    # Get terminal size
+    term_width, term_height = get_terminal_size()
+
+    if first_line and last_line:
+        seperator = ("\n") + ('-' * term_width) + ('\n') # Text separator
+    elif first_line == True and last_line == False:
+        seperator = ("\n") + ('-' * term_width)
+    elif last_line == True and first_line == False:
+        seperator = ('-' * term_width) + ('\n')
+    slow_type(seperator, speed=0.001, styles=["bold"])
+
+def move_cursor_up(lines=1):
+    # Get the current line number
+    current_line = inspect.currentframe().f_back.f_lineno - 1
+
+    # Calculate the new line number
+    new_line = max(current_line - lines, 0)
+
+    # Move the cursor to the new line
+    for i in range(current_line - new_line):
+        print("\033[F", end="")
+    print("\033[E", end="")
 
 # slow_type("Google", link = "https://google.com")  # Link style
 # slow_type("Bold text", styles=["bold"])  # Bold style

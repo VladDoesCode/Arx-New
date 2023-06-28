@@ -1,14 +1,12 @@
-from rich.console import Console
-import time
 import random
 import json
 import os
-from utils import slow_type, wait_for_input, player_input
-from items import healing_potions, armors
-from tabulate import tabulate
+from utils import slow_type, wait_for_input, player_input, seperator, move_cursor_up
+from items import item_dict
+from colorama import init, Fore, Back, Style
+import json
+import items
 
-console = Console()
-seperator = '\n' + '-' * console.width + '\n'  # Text separator
 character_folder = "characters"  # New folder name
 
 class Character:
@@ -26,8 +24,23 @@ class Character:
         self.weapons = []
         self.actions = []
         self.inventory = []
+        self.equipped_items = []  # Add an equipped_items attribute
         self.xp = 0
         self.level = 1
+        self.currencies = []
+    
+    def add_to_inventory(self, item, quantity=1):
+        """Add an item to the character's inventory."""
+        item['quantity'] = quantity  # Add the 'quantity' key to the item dictionary
+        self.inventory.append(item)  # Append the item to the inventory
+
+    def equip_item(self, item):
+        """Equip an item."""
+        self.equipped_items.append(item)
+
+    def unequip_item(self, item):
+        """Unequip an item."""
+        self.equipped_items.remove(item)
 
     def modifier(self, attribute_value):
         """Calculate the modifier for an attribute value."""
@@ -35,65 +48,51 @@ class Character:
 
     # Show the character's stats
     def show_character_stats(self):
-        # Define color codes
-        HEADER_COLOR = "\033[95m"
-        NAME_COLOR = "\033[92m"
-        RACE_COLOR = "\033[93m"
-        CLASS_COLOR = "\033[94m"
-        RESET_COLOR = "\033[0m"
-
         # Define header
-        header = ["Name", "Race", "Class", "Attributes", "Action", "Attack Bonus", "Damage", "Damage Type"]
+        header = ["Name", "Race", "Class", "Attributes", "Actions", "Inventory", "Health", "Level", "XP", "Currencies", "Equipped Items"]
 
         # Populate the Attributes column
-        attributes_string = '\n'.join([f"{attr}: {value} (Mod: {self.modifier(value)})" for attr, value in self.attributes.items()])
+        attributes_string = '\n'.join([f"{attr}: {value} ({self.modifier(value)})" for attr, value in self.attributes.items()])
 
-        # Populate the table with the character information
-        rows = []
-        for action in self.actions:
-            row = [
-                f"{NAME_COLOR}{self.name}{RESET_COLOR}" if self.name and not rows else "",
-                f"{RACE_COLOR}{self.race}{RESET_COLOR}" if self.race and not rows else "",
-                f"{CLASS_COLOR}{self.character_class}{RESET_COLOR}" if self.character_class and not rows else "",
-                attributes_string if attributes_string and not rows else "",
-                action["name"],
-                action["attackBonus"],
-                action["damage"],
-                action["damagetype"]
+        # Populate the Actions column
+        actions_string = '\n'.join([f"{action['name']} (Attack Bonus: {action['attack_bonus']}, Damage: {action['damage']}, Damage Type: {action['type']})" for action in self.actions])
+
+        # Populate the Inventory column
+        inventory_string = '\n'.join([f"{item['name']} ({item['quantity']})" for item in self.inventory])
+
+        # Populate the Currencies column
+        currencies_string = '\n'.join([f"{currency['name']}: {currency['amount']}" for currency in self.currencies])
+
+        # Populate the Equipped Items column
+        equipped_items_string = '\n'.join([f"{item['name']} ({', '.join([f'{stat}: {value}' for stat, value in item['stats'].items()])})" for item in self.equipped_items])
+
+        # Create the table rows
+        rows = [
+            [
+                self.name,
+                self.race,
+                self.character_class,
+                attributes_string,
+                actions_string,
+                inventory_string,
+                f"{self.health}/{self.max_health} {'█' * int(self.health / self.max_health * 10)}{'-' * (10 - int(self.health / self.max_health * 10))}",
+                f"{self.level} {'█' * int(self.xp / self.next_level_experience() * 10)}{'-' * (10 - int(self.xp / self.next_level_experience() * 10))} {self.next_level_experience()}",
+                currencies_string,
+                equipped_items_string
             ]
-            rows.append(row)
+        ]
 
         # Create the table string
-        table_string = tabulate(rows, headers=header, tablefmt="grid")
-
-        # Colorize the header
-        for h in header:
-            table_string = table_string.replace(h, f"{HEADER_COLOR}{h}{RESET_COLOR}")
+        table_string = ""
+        for row in rows:
+            for i, cell in enumerate(row):
+                table_string += f"{cell:<20}" if i != len(row) - 1 else f"{cell}\n"
 
         # Display the table
-        slow_type(table_string, 0.001, styles=["bold"], center=True)
+        print(table_string)
 
         # Wait for user input before continuing
         wait_for_input()
-
-    # Helps make list choosing easier
-    def choose_from_list(self, choice_list, prompt, go_back=False, speed=0.013, style=None, center=False):
-        """Helper function to choose an item from a list"""
-        while True:
-            for i, item in enumerate(choice_list):
-                slow_type(f"{i + 1}. {item}", speed, center=center)
-            if go_back:
-                slow_type("0. Go Back", speed, center=center)
-            slow_type(prompt, new_line=False, styles=style, center=center)
-            choice = input()
-            if choice.isdigit():
-                if go_back and int(choice) == 0:
-                    print('\n')
-                    return None
-                elif 1 <= int(choice) <= len(choice_list):
-                    print('\n')
-                    return choice_list[int(choice) - 1]
-            slow_type('Invalid choice!\n', speed, styles=["bold", "Red"], center=center)
 
     # Load a character from a file
     def choose_character(self):
@@ -104,13 +103,14 @@ class Character:
         slow_type("Character Files:", center=True)
         character_files.append("Create new character")
         choice = player_input("Choose a character file to load (enter the corresponding number), or choose 'Create new character': ", character_files, is_list=True, center=True)
-        # choice = self.choose_from_list(character_files, "Choose a character file to load (enter the corresponding number), or choose 'Create new character': ", style=["bold", "underline"], center=True)
         if choice == "Create new character":
+            seperator()  # Separator
             return None
         else:
             player = self.load_character(choice)
             slow_type(f"Character '{choice}' loaded successfully!\n", styles=["bold", "Green"], center=True)
-            time.sleep(.5)
+            # Clear the screen
+            print("\033c", end='')
             return player
 
     # Choose character name
@@ -123,8 +123,8 @@ class Character:
                 slow_type("A character file with that name already exists. Please choose a different name.")
             else:
                 slow_type(f"Welcome, {self.name}!")
-                print(seperator)  # Separator
-                slow_type('Character Creation]', styles=["bold"])
+                seperator()  # Separator
+                slow_type('Character Creation', styles=["bold"])
                 break
 
     # Choose character race
@@ -147,10 +147,12 @@ class Character:
             'One Grung Above (1 Race)': ['Grung']
         }
         while True:
-            selected_race_category = self.choose_from_list(list(races.keys()), 'Choose a category of races (enter the corresponding number): ', speed=0, style=["bold", "underline"])
+            selected_race_category = player_input('Choose a category of race (enter the corresponding number): ', list(races.keys()), is_list=True, speed=0, styles=["bold", "underline"], new_line=True)
+            # selected_race_category = self.choose_from_list(list(races.keys()), 'Choose a category of races (enter the corresponding number): ', speed=0, style=["bold", "underline"])
             if selected_race_category is not None:
                 race_list = races[selected_race_category]
-                chosen_race = self.choose_from_list(race_list, 'Choose a race (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"])
+                chosen_race = player_input('Choose a race (enter the corresponding number): ', race_list, is_list=True, go_back=True, speed=0, styles=["bold", "underline"])
+                # chosen_race = self.choose_from_list(race_list, 'Choose a race (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"], new_line=False)
                 if chosen_race is not None:
                     self.race = chosen_race
                     break
@@ -164,15 +166,19 @@ class Character:
             'Tasha\'s Cauldron of Everything (1 Class)': ['Artificer'],
             'Critical Role (1 Class)': ['Blood Hunter']
         }
-        print(seperator)  # Separator
+        seperator()  # Separator
         while True:
-            selected_class_category = self.choose_from_list(list(classes.keys()), 'Choose a category of classes (enter the corresponding number): ', speed=0, style=["bold", "underline"])
+            selected_class_category = player_input('Choose a category of class (enter the corresponding number): ', list(classes.keys()), is_list=True, speed=0, styles=["bold", "underline"], new_line=True)
+            # selected_class_category = self.choose_from_list(list(classes.keys()), 'Choose a category of classes (enter the corresponding number): ', speed=0, style=["bold", "underline"])
             if selected_class_category is not None:
                 class_list = classes[selected_class_category]
-                chosen_class = self.choose_from_list(class_list, 'Choose a class (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"])
+                chosen_class = player_input('Choose a class (enter the corresponding number): ', class_list, is_list=True, go_back=True, speed=0, styles=["bold", "underline"])
+                # chosen_class = self.choose_from_list(class_list, 'Choose a class (enter the corresponding number): ', go_back=True, speed=0, style=["bold", "underline"])
                 if chosen_class is not None:
                     self.character_class = chosen_class
                     break
+
+        seperator()  # Separator
 
     # Choose character attributes and Assign AC and Health
     def choose_attributes(self):
@@ -185,15 +191,11 @@ class Character:
         rolls.sort(reverse=True)
 
         for attr in attributes:
-            slow_type(f"Available rolls: {rolls}")
-            slow_type((f"Choose a value for {attr} (enter the corresponding number): "), new_line=False, styles=["bold", "underline"])
-            attr_roll = int(input())
-
-            while attr_roll not in rolls:
-                slow_type("Invalid selection. Please choose a value from the available rolls.")
-                slow_type((f"Choose a value for {attr} (enter the corresponding number): "), new_line=False, styles=["bold", "underline"])
-                attr_roll = int(input())
-
+            slow_type(f"Available rolls: {Fore.GREEN}{rolls}{Fore.RESET}", speed=0.008)
+            attr_roll = player_input(f"Choose a value for {attr} (enter the corresponding number): ", rolls, styles=["bold", "underline"], speed=0.008, is_numeric=True)
+            # do something for every attr in atrributes except for the last one:
+            if attr != attributes[-1]:
+                print("")
             self.attributes[attr] = attr_roll
             rolls.remove(attr_roll)
 
@@ -212,6 +214,8 @@ class Character:
         }
         self.health = hit_dice[self.character_class] + self.modifier(self.attributes['Constitution'])
         self.max_health = self.health
+        move_cursor_up(1)  # Move cursor up 1 line
+        seperator()  # Separator
 
     def choose_weapons(self):
         """Choose weapons for the character."""
@@ -233,7 +237,7 @@ class Character:
 
         while len(chosen_weapons) < 2:
             # Display weapons
-            console.print(('[bold]Weapon Selection[/bold]'))
+            slow_type('Weapon Selection', styles=["bold"], speed=0)
             for i, weapon in enumerate(weapons):
                 if weapon not in chosen_weapons:  # Check if the weapon has already been chosen
                     # Determine appropriate attribute for attack bonus
@@ -247,17 +251,18 @@ class Character:
                     # Add + symbol for positive bonuses
                     attack_bonus = f"+{attack_bonus}" if attack_bonus >= 0 else attack_bonus
 
-                    console.print(f'{i + 1}. {weapon["name"]} - Damage: {weapon["damage"]} {weapon["type"].title()} - Attack Bonus: {attack_bonus}')
+                    slow_type(f'{i + 1}. {weapon["name"]} - Damage: {Fore.RED}{weapon["damage"]} {weapon["type"].title()}{Fore.RESET} - Attack Bonus: {Fore.GREEN}{attack_bonus}{Fore.RESET}', speed=0)
 
-            slow_type('Choose a weapon (enter the corresponding number), you get to pick 2: ', new_line=False, styles=["bold", "underline"])
-            weapon_choice = input()
-            if weapon_choice.isdigit() and 1 <= int(weapon_choice) <= len(weapons):
+            # Choose weapon
+            weapon_choice = player_input('Choose a weapon (enter the corresponding number), you get to pick 2: ', valid_options=[i+1 for i in range(len(weapons))], styles=["bold", "underline"], speed=0, is_numeric=True)
+            # weapon_choice = player_input('Choose a weapon (enter the corresponding number), you get to pick 2: ', valid_options=[str(i+1) for i in range(len(weapons))], styles=["bold", "underline"], speed=0, is_numeric=True)
+            if isinstance(weapon_choice, int) and 1 <= weapon_choice <= len(weapons):
                 chosen_weapon = weapons[int(weapon_choice) - 1]
                 if chosen_weapon in chosen_weapons:
                     print(f"You've already chosen the {chosen_weapon['name']}!")
                 else:
                     chosen_weapons.append(chosen_weapon)
-                    print(f"You've chosen the {chosen_weapon['name']}!")
+                    slow_type(f"\nYou've chosen the {chosen_weapon['name']}!\n", speed=0, new_line=True, styles=["bold", "yellow"])
                     weapons.remove(chosen_weapon)  # Remove the chosen weapon from the list
             else:
                 print('Invalid choice!')
@@ -275,21 +280,28 @@ class Character:
             else:
                 attack_bonus = self.modifier(self.attributes['Strength'])
 
+            # Add + symbol for positive bonuses
+            attack_bonus = f"+{attack_bonus}" if attack_bonus >= 0 else attack_bonus
+
+            # Create action dictionary
             action = {
-                'name': 'Attack with ' + weapon['name'],
-                'description': f"{weapon['name']} {weapon['type'].title()} Attack",
-                'attackBonus': f"+{attack_bonus}",
+                'name': weapon['name'],
                 'damage': weapon['damage'],
-                'damagetype': weapon['type']
+                'type': weapon['type'],
+                'attack_bonus': attack_bonus
             }
+
             player_actions.append(action)
 
         self.actions = player_actions
 
     def generate_inventory(self):
         """Generate the initial inventory for the character."""
-        self.inventory.append(healing_potions[0])  # Add a Minor Healing Potion to the inventory
-        self.inventory.append(armors[0])  # Add Padded Armor to the inventory
+        self.add_to_inventory(item_dict['Backpack']) # Add a backpack to the inventory
+        self.add_to_inventory(item_dict['Rations'], 10) # Add 10 days of rations to the inventory
+        self.add_to_inventory(item_dict['Torch'], 10) # Add 10 torches to the inventory
+        self.add_to_inventory(item_dict['Minor Healing Potion']) # Add a Minor Healing Potion to the inventory
+        self.add_to_inventory(item_dict['Padded Armor']) # Add Padded Armor to the inventory
 
     def generate_character(self):
         """Function to go through the steps of character creation."""
@@ -298,12 +310,13 @@ class Character:
             self.choose_name()
             self.choose_race()
             self.choose_class()
-            print(seperator)
             self.choose_attributes()
             self.choose_weapons()
             self.generate_actions()
             self.generate_inventory()
             self.save_character()
+            # Clear the screen
+            print("\033c", end='')
         self.show_character_stats()
 
     def save_character(self, quicksave=False):

@@ -2,9 +2,6 @@
 from utils import slow_type
 from colorama import init, Fore, Back, Style
 
-def add_item_to_inventory(player, item):
-    player.inventory.append(item)
-
 def use_item(player, item_index):
     """Use the selected item from the player's inventory."""
     item = player.inventory[item_index]

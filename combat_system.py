@@ -4,8 +4,8 @@ import re  # Regular expressions used for parsing damage strings
 import sys  # Used to interact with python runtime environment
 from character_creation import Character  # Import the Character class from the character_creation module
 from utils import display_healthbars, slow_type, player_input  # Import utility functions from the utils module
-from items import healing_potions  # Import data for healing potions
-from inventory import add_item_to_inventory, use_item  # Import inventory management functions
+import items  # Import data for healing potions
+from inventory import use_item  # Import inventory management functions
 from colorama import init, Fore, Back, Style  # Used to print colored text in terminal
 from PIL import Image  # Python Imaging Library used for image processing
 from term_image.image import AutoImage  # term_image used for converting image into ASCII art
@@ -67,16 +67,18 @@ def combat(player, monsters):
     slow_type("\n" + image_str + "\n", speed=0.00005)
 
     # Calculate initiative to determine turn order
-    playerInitiative = random.randint(1, 20) + player.modifier(player.attributes['Dexterity'])
-    monsterInitiative = random.randint(1, 20) + player.modifier(monster['dexterity'])
+    playerd20 = random.randint(1, 20)
+    monsterd20 = random.randint(1, 20)
+    playerInitiative = max(playerd20 + player.modifier(player.attributes['Dexterity']), 1)
+    monsterInitiative = max(monsterd20 + player.modifier(monster['dexterity']), 1)
     # Color code for player and monster based on initiative
     playerColor, monsterColor = (Fore.GREEN, Fore.RED) if playerInitiative > monsterInitiative else ((Fore.RED, Fore.GREEN) if playerInitiative < monsterInitiative else (Fore.YELLOW, Fore.YELLOW))
     # Display initiative rolls
-    slow_type(f"{player.name} rolled a {playerColor}{Style.BRIGHT}{playerInitiative}{Fore.RESET} for initiative!")
-    slow_type(f"{monster['name']} rolled a {monsterColor}{Style.BRIGHT}{monsterInitiative}{Fore.RESET} for initiative!")
+    slow_type(f"{player.name} rolled a {playerColor}{Style.BRIGHT}{playerInitiative}{Style.RESET_ALL} \x1B[4m(D20:{playerd20} + Dex Mod:{player.modifier(player.attributes['Dexterity'])}){Style.RESET_ALL} for initiative!")
+    slow_type(f"{monster['name']} rolled a {monsterColor}{Style.BRIGHT}{monsterInitiative}{Style.RESET_ALL} \x1B[4m(D20:{monsterd20} + Dex Mod:{player.modifier(monster['dexterity'])}){Style.RESET_ALL} for initiative!")
 
     # Initialize monster health
-    monsterMaxHealth = int(parse_damage(monster['health']))
+    monsterMaxHealth = max(int(parse_damage(monster['health'])), 1)
     monsterCurrentHealth = monsterMaxHealth
     # Display health bars at the start of combat
     display_healthbars(player, monster, monsterMaxHealth, monsterCurrentHealth)
@@ -105,7 +107,7 @@ def combat(player, monsters):
 
                 # Simulate an attack roll
                 random_roll = random.randint(1, 20)
-                attack_roll = random_roll + int(player.actions[weapon_choice - 1]['attackBonus']) # type: ignore
+                attack_roll = random_roll + int(player.actions[weapon_choice - 1]['attack_bonus']) # type: ignore
                 slow_type(f"You rolled a {Fore.GREEN if attack_roll >= monster['ac'] else Fore.RED}{Style.BRIGHT}{attack_roll}{Fore.RESET} against the {monster['name']}'s armor class of {Fore.RED if attack_roll >= monster['ac'] else Fore.GREEN}{Style.BRIGHT}{monster['ac']}{Fore.RESET}!")
 
                 # Check if the attack hits
@@ -212,8 +214,9 @@ def combat(player, monsters):
 
         # Random chance for item drop
         if random.random() < 0.5:
-            potion = random.choice(healing_potions)
-            add_item_to_inventory(player, potion)
+            potion = random.choice(items.healing_potions)
+            Character.add_to_inventory(player, potion)
+            # player.add_to_inventory(player, potion)
             slow_type(f"The {monster['name']} dropped a {Fore.GREEN}{potion['name']}{Fore.RESET}! It has been added to your inventory.\n", styles=["bold"])
         
         # Save the character if alive after combat
