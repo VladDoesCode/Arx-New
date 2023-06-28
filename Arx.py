@@ -14,27 +14,27 @@ seperator = ("\n") + ('-' * term_width) + ('\n') # Text separator
 # Start the Game
 # Clear the screen
 print("\033c", end='')
-# slow_type('Welcome to....', 0.1, center=True, styles=['bold'])
-# slow_type(f"""                                           
-#      _____        _____                   
-#  ___|\    \   ___|\    \  _____      _____
-#  /    /\    \ |    |\    \ \    \    /    / 
-# |    |  |    ||    | |    | \    \  /    /  
-# |    |__|    ||    |/____/   \____\/____/   
-# |    .--.    ||    |\    \   /    /\    \   
-# |    |  |    ||    | |    | /    /  \    \  
-# |____|  |____||____| |____|/____/ /\ \____| 
-# |    |  |    ||    | |    ||    |/  \|    | 
-# |____|  |____||____| |____||____|    |____| 
-#   \(      )/    \(     )/    \(        )/   
-#    '      '      '     '      '        '    
-#                                            """,0.005, center=True, styles=['red'], new_line=False)
-# slow_type('A Text RPG created by Vladimir B.', center=True)
-# slow_type('You will be able to create your own character, and fight monsters in turn-based combat.', center=True)
-# slow_type('Notes: If your character dies, their save file will be deleted.', center=True, styles=['green'])
-# slow_type('After each combat your character will be quick saved.', center=True, styles=['green'])
-# slow_type('At anypoint after character creation you can type "menu" to goto the in game menu!', center=True, styles=['green'])
-# print(seperator)
+slow_type('Welcome to....', 0.1, center=True, styles=['bold'])
+slow_type(f"""                                           
+     _____        _____                   
+ ___|\    \   ___|\    \  _____      _____
+ /    /\    \ |    |\    \ \    \    /    / 
+|    |  |    ||    | |    | \    \  /    /  
+|    |__|    ||    |/____/   \____\/____/   
+|    .--.    ||    |\    \   /    /\    \   
+|    |  |    ||    | |    | /    /  \    \  
+|____|  |____||____| |____|/____/ /\ \____| 
+|    |  |    ||    | |    ||    |/  \|    | 
+|____|  |____||____| |____||____|    |____| 
+  \(      )/    \(     )/    \(        )/   
+   '      '      '     '      '        '    
+                                           """,0.005, center=True, styles=['red'], new_line=False)
+slow_type('A Text RPG created by Vladimir B.', center=True)
+slow_type('You will be able to create your own character, and fight monsters in turn-based combat.', center=True)
+slow_type('Notes: If your character dies, their save file will be deleted.', center=True, styles=['green'])
+slow_type('After each combat your character will be quick saved.', center=True, styles=['green'])
+slow_type('At anypoint after character creation you can type "menu" to goto the in game menu!', center=True, styles=['green'])
+print(seperator)
 
 # create a new character
 my_character = Character()
