@@ -1,12 +1,19 @@
 [
     {
         "name": "Almiraj",
-        "tags": "Small Beast, Unaligned",
-        "description": "An almiraj (pronounced AWL-meer-ahj) is a large, timid rabbit with a 1-foot-long spiral horn emerging from its forehead, not unlike the horn of a unicorn. If driven to attack, it tries to spear enemies with its horn.",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Almiraj is a small creature resembling a rabbit with a single, long, unicorn-like horn on its forehead. It is known for its keen senses and agility, often found darting through dense foliage in search of food.",
         "tokenURL": "https://5e.tools/img/ToA/Almiraj.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 50
+            }
+        ],
         "ac": 13,
         "strength": 2,
         "dexterity": 16,
@@ -16,6 +23,23 @@
         "charisma": 10,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 14
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Horn",
@@ -24,16 +48,35 @@
                 "damage": "1d4 + 3",
                 "damagetype": "piercing"
             }
-        ]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Familiar",
+                "description": "With the DM's permission, the find familiar spell can summon an almiraj."
+            },
+            {
+                "name": "Keen Senses",
+                "description": "The almiraj has advantage on Wisdom (Perception) checks that rely on hearing or sight."
+            }
+        ],
+        "environment": null
     },
     {
         "name": "Awakened Rat",
-        "tags": "Tiny Beast, Unaligned",
-        "description": "An awakened rat is a small creature that was magically transformed from an ordinary rat into a more intelligent being. It retains its rat-like appearance but possesses enhanced senses and the ability to understand and communicate in Common.",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Awakened Rat is a small rat that has been magically awakened, granting it enhanced senses and limited intelligence. It scurries around urban environments, often seeking food scraps and shelter in alleyways.",
         "tokenURL": "https://5e.tools/img/WDH/Awakened%20Rat.png",
         "challengerating": 0,
         "xp": 10,
-        "health": "1d4",
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            }
+        ],
         "ac": 10,
         "strength": 2,
         "dexterity": 11,
@@ -43,6 +86,23 @@
         "charisma": 4,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Common"],
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Bite",
@@ -51,16 +111,31 @@
                 "damage": "1",
                 "damagetype": "piercing"
             }
-        ]
-    },    
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Smell",
+                "description": "The rat has advantage on Wisdom (Perception) checks that rely on smell."
+            }
+        ],
+        "environment": null
+    },
     {
         "name": "Awakened Shrub",
-        "tags": "Small Plant, Unaligned",
-        "description": "An awakened shrub is an ordinary shrub given sentience and mobility by the awaken spell or similar magic.",
+        "tags": ["Small", "Plant", "Unaligned"],
+        "description": "The Awakened Shrub is a small plant that has gained sentience through magical means. It appears like an ordinary shrub but is capable of limited movement and basic interactions. While motionless, it can easily blend in with its surroundings, resembling a normal shrub.",
         "tokenURL": "https://5e.tools/img/MM/Awakened%20Shrub.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "3d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            }
+        ],
         "ac": 9,
         "strength": 3,
         "dexterity": 8,
@@ -68,8 +143,20 @@
         "intelligence": 10,
         "wisdom": 10,
         "charisma": 6,
-        "dmgVulnerabilities": "fire",
-        "dmgResistances": "piercing",
+        "dmgResistances": ["piercing"],
+        "dmgVulnerabilities": ["fire"],
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": ["one language known by its creator"]
+        },
         "actions": [
             {
                 "name": "Rake",
@@ -78,16 +165,35 @@
                 "damage": "1d4 - 1",
                 "damagetype": "slashing"
             }
-        ]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "False Appearance",
+                "description": "While the shrub remains motionless, it is indistinguishable from a normal shrub."
+            }
+        ],
+        "environment": ["Forest"]
     },
     {
         "name": "Baboon",
-        "tags": "Small Beast, Unaligned",
-        "description": "The baboon is a small, agile primate known for its climbing abilities. It travels in troops, relying on its pack tactics to gain an advantage in combat.",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Baboon is a small primate known for its agility and mischievous behavior. Found in forested areas and hills, it is often seen in packs, relying on its keen senses and pack tactics to hunt for food and protect its group.",
         "tokenURL": "https://5e.tools/img/MM/Baboon.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            },
+            {
+                "type": "Climb",
+                "value": 30
+            }
+        ],
         "ac": 12,
         "strength": 8,
         "dexterity": 14,
@@ -97,6 +203,18 @@
         "charisma": 6,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 11
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Bite",
@@ -105,16 +223,35 @@
                 "damage": "1d4 - 1",
                 "damagetype": "piercing"
             }
-        ]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Pack Tactics",
+                "description": "The baboon has advantage on an attack roll against a creature if at least one of the baboon's allies is within 5 feet of the creature and the ally isn't incapacitated."
+            }
+        ],
+        "environment": ["Forest", "Hill"]
     },
     {
         "name": "Badger",
-        "tags": "Tiny Beast, Unaligned",
-        "description": "The badger is a small and tenacious mammal known for its strong jaws and burrowing capabilities. It has keen senses, particularly in smell, which it relies on for hunting and survival.",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Badger is a small, ferocious mammal known for its aggressive nature and strong bite. It has a stocky body, sharp claws, and a keen sense of smell, making it a formidable predator in its habitat.",
         "tokenURL": "https://5e.tools/img/MM/Badger.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d4 + 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Burrow",
+                "value": 5
+            }
+        ],
         "ac": 10,
         "strength": 4,
         "dexterity": 11,
@@ -124,6 +261,23 @@
         "charisma": 5,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 11
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Bite",
@@ -132,16 +286,35 @@
                 "damage": "1",
                 "damagetype": "piercing"
             }
-        ]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Smell",
+                "description": "The badger has advantage on Wisdom (Perception) checks that rely on smell."
+            }
+        ],
+        "environment": null
     },
     {
         "name": "Bat",
-        "tags": "Tiny Beast, Unaligned",
-        "description": "The bat is a small flying creature known for its ability to navigate and hunt using echolocation. It relies on its keen hearing to locate prey.",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Bat is a small, nocturnal creature with leathery wings and sharp fangs. It is known for its ability to navigate in darkness using echolocation and its keen hearing, which allows it to detect even the faintest sounds.",
         "tokenURL": "https://5e.tools/img/MM/Bat.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 5
+            },
+            {
+                "type": "Fly",
+                "value": 30
+            }
+        ],
         "ac": 12,
         "strength": 2,
         "dexterity": 15,
@@ -151,6 +324,23 @@
         "charisma": 4,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 11
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Bite",
@@ -159,16 +349,35 @@
                 "damage": "1",
                 "damagetype": "piercing"
             }
-        ]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Echolocation",
+                "description": "The bat can't use its blindsight while deafened."
+            },
+            {
+                "name": "Keen Hearing",
+                "description": "The bat has advantage on Wisdom (Perception) checks that rely on hearing."
+            }
+        ],
+        "environment": null
     },
     {
         "name": "Campestri",
-        "tags": "Tiny Plant, Unaligned",
-        "description": "The campestri is a small plant known for its ability to mimic voices and songs. It communicates through nasal falsetto sounds and possesses spores that can incapacitate creatures.",
+        "tags": ["Tiny", "Plant", "Unaligned"],
+        "description": "The Campestri is a small plant creature that resembles a floating flower with vibrant petals. It moves slowly, relying on tremorsense to detect its surroundings. While lacking in physical strength, it compensates with its ability to mimic sounds and release debilitating spores.",
         "tokenURL": "https://5e.tools/img/WBtW/Campestri.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 5
+            }
+        ],
         "ac": 12,
         "strength": 1,
         "dexterity": 7,
@@ -178,6 +387,23 @@
         "charisma": 8,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Tremorsense",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 14
+            }
+        ],
+        "languages": {
+            "understands": ["Common"],
+            "speaks": ["Mimicry"]
+        },
         "actions": [
             {
                 "name": "Head Butt",
@@ -185,17 +411,40 @@
                 "attackBonus": "+0",
                 "damage": "1",
                 "damagetype": "bludgeoning"
+            },
+            {
+                "name": "Spores (1/Day)",
+                "description": "A 5-foot radius of spores extends from the campestri. These spores can go around corners, and they have no effect on Constructs, Elementals, Plants, or Undead. Each other creature in the area must make a DC 10 Wisdom saving throw. On a failed save, the creature is incapacitated and its speed is halved, both for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
             }
-        ]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Mimicry",
+                "description": "The campestri can mimic any voice or song it has heard, albeit in a nasal falsetto."
+            }
+        ],
+        "environment": null
     },
     {
         "name": "Cat",
-        "tags": "Tiny Beast, Unaligned",
-        "description": "The cat is a small, agile creature known for its keen senses and stealthy movements. It can be found in various environments such as deserts, forests, grasslands, and urban areas.",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Cat is a small and agile creature known for its independent nature and keen senses. It can be found in various environments, including deserts, forests, grasslands, and urban areas.",
         "tokenURL": "https://5e.tools/img/MM/Cat.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 40
+            },
+            {
+                "type": "Climb",
+                "value": 30
+            }
+        ],
         "ac": 12,
         "strength": 3,
         "dexterity": 15,
@@ -205,6 +454,18 @@
         "charisma": 7,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Claws",
@@ -214,16 +475,30 @@
                 "damagetype": "slashing"
             }
         ],
-        "environment": "Desert, Forest, Grassland, Urban"
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Smell",
+                "description": "The cat has advantage on Wisdom (Perception) checks that rely on smell."
+            }
+        ],
+        "environment": ["Desert", "Forest", "Grassland", "Urban"]
     },
     {
         "name": "Commoner",
-        "tags": "Medium Humanoid (Any Race), Any Alignment",
-        "description": "A commoner is an ordinary individual who lacks any significant training or combat abilities. They can be found in various environments and are usually proficient in one language, commonly Common.",
+        "tags": ["Medium", "Humanoid (Any Race)", "Any Alignment"],
+        "description": "The Commoner is an ordinary individual without any significant training or exceptional abilities. They represent the average person found in various civilizations and societies.",
         "tokenURL": "https://5e.tools/img/MM/Commoner.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
         "ac": 10,
         "strength": 10,
         "dexterity": 10,
@@ -233,6 +508,18 @@
         "charisma": 10,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["any one language (usually Common)"],
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Club",
@@ -242,16 +529,25 @@
                 "damagetype": "bludgeoning"
             }
         ],
-        "environment": "Arctic, Coastal, Desert, Forest, Grassland, Hill, Urban"
+        "bonusActions": null,
+        "specialAbilities": null,
+        "environment": ["Arctic", "Coastal", "Desert", "Forest", "Grassland", "Hill", "Urban"]
     },
     {
         "name": "Constructed Commoner",
-        "tags": "Medium Construct",
-        "description": "The Constructed Commoner is an artificial being designed to resemble a regular commoner. It lacks the biological needs and vulnerabilities of a living creature.",
+        "tags": ["Medium", "Construct"],
+        "description": "The Constructed Commoner is a humanoid figure made entirely of inanimate materials such as wood, stone, or metal. It lacks any distinguishing features and moves with mechanical precision. It is often created for specific tasks and lacks independent thought or emotion.",
         "tokenURL": "https://5e.tools/img/CM/Constructed%20Commoner.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d8 + 2",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 25
+            }
+        ],
         "ac": 15,
         "strength": 10,
         "dexterity": 10,
@@ -261,10 +557,18 @@
         "charisma": 10,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
-        "dmgImmunities": "poison",
-        "conditionImmunities": "exhaustion, poisoned",
-        "senses": "passive Perception 10",
-        "languages": "Common",
+        "dmgImmunities": ["poison"],
+        "conditionImmunities": ["exhaustion", "poisoned"],
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Common"],
+            "speaks": ["Common"]
+        },
         "actions": [
             {
                 "name": "Club",
@@ -273,16 +577,35 @@
                 "damage": "1d4",
                 "damagetype": "bludgeoning"
             }
-        ]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Unusual Nature",
+                "description": "The commoner doesn't require air, food, drink, or sleep, and it gains no benefit from finishing a short or long rest. When it drops to 0 hit points, it becomes a lifeless object."
+            }
+        ],
+        "environment": null
     },
     {
         "name": "Crab",
-        "tags": "Tiny Beast, Unaligned",
-        "description": "The crab is a small crustacean commonly found in coastal areas. It has a tough exoskeleton and uses its claws to defend itself.",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Crab is a small crustacean with a hard exoskeleton and pincers. It scuttles along the seashore, feeding on small creatures and debris. While generally harmless, it can deliver a painful pinch if threatened.",
         "tokenURL": "https://5e.tools/img/MM/Crab.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Swim",
+                "value": 20
+            }
+        ],
         "ac": 11,
         "strength": 2,
         "dexterity": 11,
@@ -292,6 +615,23 @@
         "charisma": 2,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 9
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
         "actions": [
             {
                 "name": "Claw",
@@ -301,16 +641,30 @@
                 "damagetype": "bludgeoning"
             }
         ],
-        "environment": "Coastal"
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Amphibious",
+                "description": "The crab can breathe air and water."
+            }
+        ],
+        "environment": ["Coastal"]
     },
     {
         "name": "Cranium Rat",
-        "tags": "Tiny Aberration, Unaligned",
-        "description": "The cranium rat is a small, aberrant creature with telepathic abilities. It dwells in the Underdark and urban areas, using its telepathic shroud to protect itself from detection.",
+        "tags": ["Tiny", "Aberration", "Unaligned"],
+        "description": "The Cranium Rat is a small, rat-like creature with an exposed brain. It is an aberration that dwells in the dark corners of the Underdark and urban areas. It possesses telepathic abilities and is adept at avoiding detection.",
         "tokenURL": "https://5e.tools/img/MPMM/Cranium%20Rat.png",
         "challengerating": 0,
         "xp": 10,
+        "proficiencyBonus": "+2",
         "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
         "ac": 12,
         "strength": 2,
         "dexterity": 14,
@@ -320,6 +674,23 @@
         "charisma": 8,
         "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": ["telepathy 30 ft."]
+        },
         "actions": [
             {
                 "name": "Bite",
@@ -341,33 +712,2657 @@
                 "description": "The cranium rat is immune to any effect that would sense its emotions or read its thoughts, as well as to all divination spells."
             }
         ],
-        "environment": "Underdark, Urban"
-    },                    
+        "environment": ["Underdark", "Urban"]
+    },
     {
-        "name": "Ambush Drake",
-        "tags": "Medium Dragon, Unaligned",
-        "description": "The Ambush Drake is a medium-sized dragon known for its stealth and cunning. It has a sleek body covered in natural armor, allowing it to move swiftly and quietly.",
-        "tokenURL": "https://5e.tools/img/HotDQ/Ambush%20Drake.png",
-        "challengerating": 0.5,
-        "xp": 100,
-        "health": "4d6 + 8",
-        "ac": 13,
+        "name": "Crawling Claw",
+        "tags": ["Tiny", "Undead", "Neutral Evil"],
+        "description": "The Crawling Claw is a severed hand that scuttles on its fingers. It is an undead creature animated by dark magic, seeking to harm the living.",
+        "tokenURL": "https://5e.tools/img/MM/Crawling%20Claw.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Climb",
+                "value": 20
+            }
+        ],
+        "ac": 12,
         "strength": 13,
-        "dexterity": 15,
-        "constitution": 14,
-        "intelligence": 4,
-        "wisdom": 11,
-        "charisma": 6,
-        "dmgResistances": "poison",
+        "dexterity": 14,
+        "constitution": 11,
+        "intelligence": 5,
+        "wisdom": 10,
+        "charisma": 4,
+        "dmgResistances": null,
         "dmgVulnerabilities": null,
+        "dmgImmunities": ["poison"],
+        "conditionImmunities": ["charmed", "exhaustion", "poisoned"],
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "30 ft.",
+                "additionalDetails": "The Crawling Claw is blind beyond this radius."
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Common"],
+            "speaks": null
+        },
         "actions": [
             {
-            "name": "Bite",
-            "description": "Melee Weapon Attack",
-            "attackBonus": "+4",
-            "damage": "1d6 + 1",
-            "damagetype": "piercing"
+                "name": "Claw",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+3",
+                "damage": "1d4 + 1",
+                "damagetype": "bludgeoning or slashing"
             }
-        ]
-    }
-]
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Turn Immunity",
+                "description": "The claw is immune to effects that turn undead."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Crow",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Crow is a small black bird known for its cunning and adaptability. It can be found in various habitats, from forests to urban areas, scavenging for food and mimicking sounds it has heard.",
+        "tokenURL": "https://5e.tools/img/WDMM/Crow.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 50
+            }
+        ],
+        "ac": 12,
+        "strength": 2,
+        "dexterity": 14,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 12,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Beak",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Mimicry",
+                "description": "The crow can mimic simple sounds it has heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Deer",
+        "tags": ["Medium", "Beast", "Unaligned"],
+        "description": "The Deer is a graceful and swift creature commonly found in forests and grasslands. It has a slender body with elegant antlers, which it uses for self-defense and mating displays.",
+        "tokenURL": "https://5e.tools/img/MM/Deer.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 50
+            }
+        ],
+        "ac": 13,
+        "strength": 11,
+        "dexterity": 16,
+        "constitution": 11,
+        "intelligence": 2,
+        "wisdom": 14,
+        "charisma": 5,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 12
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d4",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": null,
+        "environment": ["Forest", "Grassland"]
+    },
+    {
+        "name": "Distended Corpse",
+        "tags": ["Medium", "Humanoid (Any Race)", "Any Alignment"],
+        "description": "The Distended Corpse appears to be a humanoid figure, though its body is bloated and disfigured. It emits a foul stench of decay and exudes an unsettling presence. This undead creature is often found in haunted areas or as a result of dark necromantic magic.",
+        "tokenURL": "https://5e.tools/img/CoS/Distended%20Corpse.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            }
+        ],
+        "ac": 10,
+        "strength": 10,
+        "dexterity": 10,
+        "constitution": 10,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": ["charmed", "frightened"],
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["any one language (usually Common)"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Club",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d4",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Snake-Swollen",
+                "description": "When a corpse is reduced to 0 hit points, it splits open, disgorging a swarm of poisonous snakes. The snakes are hungry and fight until slain."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Dohwar",
+        "tags": ["Small", "Fey", "Any Alignment"],
+        "description": "The Dohwar is a small fey creature that appears as a mischievous humanoid with vibrant, colorful skin and large, expressive eyes. They are known for their telepathic abilities and their talent for manipulation.",
+        "tokenURL": "https://5e.tools/img/BAM/Dohwar.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "3d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Swim",
+                "value": 20
+            }
+        ],
+        "ac": 11,
+        "strength": 5,
+        "dexterity": 12,
+        "constitution": 11,
+        "intelligence": 11,
+        "wisdom": 14,
+        "charisma": 13,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 12
+            }
+        ],
+        "languages": {
+            "understands": ["Common", "Dohwar"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+3",
+                "damage": "1d4 + 1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": [
+            {
+                "name": "Spellcasting (Psionics)",
+                "description": "The dohwar casts the following spell, requiring no spell components and using Charisma as the spellcasting ability (spell save DC 11):",
+                "attackBonus": null,
+                "damage": null,
+                "damagetype": null,
+                "spell": "3/day: detect thoughts"
+            }
+        ],
+        "specialAbilities": [
+            {
+                "name": "Merging",
+                "description": "Two dohwars can have a telepathic conversation with each other and a third willing creature of their choice, provided all three are within 30 feet of one another."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Drow Commoner",
+        "tags": ["Medium", "Humanoid", "Drow Elf", "Any Alignment"],
+        "description": "The Drow Commoner is a member of the dark elf race, living in the depths of the Underdark. They are typically seen as common folk among the drow society, performing various mundane tasks and rarely involved in the political or military affairs of their kind.",
+        "tokenURL": "https://5e.tools/img/OotA/Drow%20Commoner.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 10,
+        "strength": 10,
+        "dexterity": 10,
+        "constitution": 10,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "120 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["any one language (usually Common)", "Elvish"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Club",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d4",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Fey Ancestry",
+                "description": "The drow commoner has advantage on saving throws against being charmed, and magic can't put the drow commoner to sleep."
+            },
+            {
+                "name": "Innate Spellcasting",
+                "description": "The drow commoner's innate spellcasting ability is Charisma (spell save DC 10). The drow commoner can innately cast the following spells, requiring no material components:\nAt will: dancing lights\n\n1/day each: darkness, faerie fire"
+            },
+            {
+                "name": "Sunlight Sensitivity",
+                "description": "While in sunlight, the drow commoner has disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Eagle",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Eagle is a majestic bird of prey known for its keen sight and impressive aerial maneuvers. It is often found soaring high above open landscapes, hunting for small prey with its sharp talons.",
+        "tokenURL": "https://5e.tools/img/MM/Eagle.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 60
+            }
+        ],
+        "ac": 12,
+        "strength": 6,
+        "dexterity": 15,
+        "constitution": 10,
+        "intelligence": 2,
+        "wisdom": 14,
+        "charisma": 7,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 14
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Talons",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1d4 + 2",
+                "damagetype": "slashing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Sight",
+                "description": "The eagle has advantage on Wisdom (Perception) checks that rely on sight."
+            }
+        ],
+        "environment": ["Coastal", "Grassland", "Hill", "Mountain"]
+    },
+    {
+        "name": "Falcon",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Falcon is a small bird of prey known for its impressive aerial agility and keen sight. It is often found soaring through the skies, hunting for small prey with its sharp talons.",
+        "tokenURL": "https://5e.tools/img/WDH/Falcon.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 60
+            }
+        ],
+        "ac": 13,
+        "strength": 5,
+        "dexterity": 16,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 14,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 14
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Talons",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "slashing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Sight",
+                "description": "The falcon has advantage on Wisdom (Perception) checks that rely on sight."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Flying Monkey",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Flying Monkey is a small creature resembling a monkey with large wings, enabling it to fly through the jungle canopies with ease. Mischievous and agile, it often travels in groups, utilizing its pack tactics to overwhelm its enemies.",
+        "tokenURL": "https://5e.tools/img/ToA/Flying%20Monkey.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            },
+            {
+                "type": "Climb",
+                "value": 20
+            },
+            {
+                "type": "Fly",
+                "value": 30
+            }
+        ],
+        "ac": 12,
+        "strength": 8,
+        "dexterity": 14,
+        "constitution": 11,
+        "intelligence": 5,
+        "wisdom": 12,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 11
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": "1d4 - 1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Familiar",
+                "description": "With the DM's permission, the find familiar spell can summon a flying monkey."
+            },
+            {
+                "name": "Pack Tactics",
+                "description": "The flying monkey has advantage on an attack roll against a creature if at least one of the monkey's allies is within 5 feet of the creature and the ally isn't incapacitated."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Fox",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Fox is a small, agile creature known for its cunning and quick reflexes. It has a slender body, pointed ears, and a bushy tail. Foxes are often found in forests and grasslands, hunting small prey and evading larger predators.",
+        "tokenURL": "https://5e.tools/img/IDRotF/Fox.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            },
+            {
+                "type": "Burrow",
+                "value": 5
+            }
+        ],
+        "ac": 13,
+        "strength": 2,
+        "dexterity": 16,
+        "constitution": 11,
+        "intelligence": 3,
+        "wisdom": 12,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Hearing",
+                "description": "The fox has advantage on Wisdom (Perception) checks that rely on hearing."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Giant Fire Beetle",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Giant Fire Beetle is an insect-like creature that emits a warm glow from its bioluminescent glands. It is commonly found in dark and underground environments, providing light to its surroundings while scavenging for food.",
+        "tokenURL": "https://5e.tools/img/MM/Giant%20Fire%20Beetle.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6 + 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 13,
+        "strength": 8,
+        "dexterity": 10,
+        "constitution": 12,
+        "intelligence": 1,
+        "wisdom": 7,
+        "charisma": 3,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 8
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": "1d6 - 1",
+                "damagetype": "slashing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Illumination",
+                "description": "The beetle sheds bright light in a 10-foot radius and dim light for an additional 10 ft."
+            }
+        ],
+        "environment": ["Underdark"]
+    },
+    {
+        "name": "Goat",
+        "tags": ["Medium", "Beast", "Unaligned"],
+        "description": "The Goat is a sturdy and nimble creature found in various terrains, including grasslands, hills, mountains, and even urban areas. It is known for its ramming attacks and sure-footedness.",
+        "tokenURL": "https://5e.tools/img/MM/Goat.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 40
+            }
+        ],
+        "ac": 10,
+        "strength": 12,
+        "dexterity": 10,
+        "constitution": 11,
+        "intelligence": 2,
+        "wisdom": 10,
+        "charisma": 5,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Ram",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+3",
+                "damage": "1d4 + 1",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": [
+            {
+                "name": "Charge",
+                "description": "If the goat moves at least 20 feet straight toward a target and then hits it with a ram attack on the same turn, the target takes an extra 2 (1d4) bludgeoning damage. If the target is a creature, it must succeed on a DC 10 Strength saving throw or be knocked prone."
+            },
+            {
+                "name": "Sure-Footed",
+                "description": "The goat has advantage on Strength and Dexterity saving throws made against effects that would knock it prone."
+            }
+        ],
+        "specialAbilities": null,
+        "environment": ["Grassland", "Hill", "Mountain", "Urban"]
+    },
+    {
+        "name": "Goblin Commoner",
+        "tags": ["Small", "Humanoid (Goblinoid)", "Any Alignment"],
+        "description": "The Goblin Commoner is a small, weak goblin that is commonly found in goblin communities. They lack the combat prowess and ferocity of their more dangerous kin and are often relegated to menial tasks within their tribes.",
+        "tokenURL": "https://5e.tools/img/TftYP/Goblin%20Commoner.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 10,
+        "strength": 8,
+        "dexterity": 10,
+        "constitution": 10,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Common", "Goblin"],
+            "speaks": ["Common", "Goblin"]
+        },
+        "actions": [
+            {
+                "name": "Club",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": "1d4 - 1",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": [
+            {
+                "name": "Nimble Escape",
+                "description": "The goblin commoner can take the Disengage or Hide action as a bonus action on each of its turns."
+            }
+        ],
+        "specialAbilities": null,
+        "environment": null
+    },
+    {
+        "name": "Hawk",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Hawk is a small bird of prey known for its keen sight and agility in the air. It is often seen soaring through the skies, searching for small prey to hunt.",
+        "tokenURL": "https://5e.tools/img/MM/Hawk.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 60
+            }
+        ],
+        "ac": 13,
+        "strength": 5,
+        "dexterity": 16,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 14,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 14
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Talons",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "slashing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Sight",
+                "description": "The hawk has advantage on Wisdom (Perception) checks that rely on sight."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Homunculus",
+        "tags": ["Tiny", "Construct", "Neutral"],
+        "description": "The Homunculus is a small, artificial creature created through alchemical and magical means. It resembles a miniature humanoid with a sleek metallic body. Its purpose is to serve its creator, often acting as a spy, messenger, or assistant.",
+        "tokenURL": "https://5e.tools/img/MM/Homunculus.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "2d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Fly",
+                "value": 40
+            }
+        ],
+        "ac": 13,
+        "strength": 4,
+        "dexterity": 15,
+        "constitution": 11,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 7,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": ["poison"],
+        "conditionImmunities": ["charmed", "poisoned"],
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["the languages of its creator"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1",
+                "damagetype": "piercing",
+                "additionalDetails": "The target must succeed on a DC 10 Constitution saving throw or be poisoned for 1 minute. If the saving throw fails by 5 or more, the target is instead poisoned for 5 (1d10) minutes and unconscious while poisoned in this way."
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Telepathic Bond",
+                "description": "While the homunculus is on the same plane of existence as its master, it can magically convey what it senses to its master, and the two can communicate telepathically."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Hyena",
+        "tags": ["Medium", "Beast", "Unaligned"],
+        "description": "The Hyena is a medium-sized, dog-like creature known for its scavenging habits and distinctive laughter-like vocalizations. It often travels in packs and can be found in various environments, including deserts, forests, grasslands, and hills.",
+        "tokenURL": "https://5e.tools/img/MM/Hyena.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8 + 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 50
+            }
+        ],
+        "ac": 11,
+        "strength": 11,
+        "dexterity": 13,
+        "constitution": 12,
+        "intelligence": 2,
+        "wisdom": 12,
+        "charisma": 5,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d6",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Pack Tactics",
+                "description": "The hyena has advantage on an attack roll against a creature if at least one of the hyena's allies is within 5 feet of the creature and the ally isn't incapacitated."
+            }
+        ],
+        "environment": ["Desert", "Forest", "Grassland", "Hill"]
+    },
+    {
+        "name": "Infant Basilisk",
+        "tags": ["Tiny", "Monstrosity", "Unaligned"],
+        "description": "The Infant Basilisk is a small, reptilian creature with the ability to petrify its victims. Despite its young age, it already possesses a deadly bite and a gaze that can turn creatures to stone.",
+        "tokenURL": "https://5e.tools/img/OotA/Infant%20Basilisk.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 + 2",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            }
+        ],
+        "ac": 11,
+        "strength": 10,
+        "dexterity": 8,
+        "constitution": 15,
+        "intelligence": 2,
+        "wisdom": 8,
+        "charisma": 7,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 9
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": {
+                    "piercing": 1,
+                    "poison": 1
+                },
+                "damagetype": ["piercing", "poison"]
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": null,
+        "environment": null
+    },
+    {
+        "name": "Jackal",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Jackal is a small, canid creature found in deserts and grasslands. It is known for its keen hearing and sense of smell, often traveling in packs to increase its hunting efficiency.",
+        "tokenURL": "https://5e.tools/img/MM/Jackal.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 40
+            }
+        ],
+        "ac": 12,
+        "strength": 8,
+        "dexterity": 15,
+        "constitution": 11,
+        "intelligence": 3,
+        "wisdom": 12,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": "1d4 - 1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Hearing and Smell",
+                "description": "The jackal has advantage on Wisdom (Perception) checks that rely on hearing or smell."
+            },
+            {
+                "name": "Pack Tactics",
+                "description": "The jackal has advantage on an attack roll against a creature if at least one of the jackal's allies is within 5 feet of the creature and the ally isn't incapacitated."
+            }
+        ],
+        "environment": ["Desert", "Grassland"]
+    },
+    {
+        "name": "Juvenile Mimic",
+        "tags": ["Tiny", "Monstrosity", "Shapechanger", "Unaligned"],
+        "description": "The Juvenile Mimic is a small, shape-shifting creature that mimics inanimate objects to lure unsuspecting prey. It has a sticky, adhesive surface and a toothy maw that it uses to trap and devour its victims.",
+        "tokenURL": "https://5e.tools/img/TCE/Juvenile%20Mimic.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "2d4 + 2",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Climb",
+                "value": 10
+            }
+        ],
+        "ac": 11,
+        "strength": 1,
+        "dexterity": 12,
+        "constitution": 13,
+        "intelligence": 10,
+        "wisdom": 13,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": ["acid"],
+        "conditionImmunities": ["prone"],
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 11
+            }
+        ],
+        "languages": {
+            "understands": ["Common", "Undercommon"],
+            "speaks": ["Common", "Undercommon"],
+            "telepathy": 120
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+3",
+                "damage": {
+                    "piercing": 1,
+                    "acid": "1d4"
+                },
+                "damagetype": ["piercing", "acid"]
+            },
+            {
+                "name": "Shape-Shift",
+                "description": "The mimic polymorphs into an object or back into its true, amorphous form. Its statistics are the same in each form. Any equipment it is wearing or carrying isn't transformed. It reverts to its true form if it dies."
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Spider Climb",
+                "description": "The mimic can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+            },
+            {
+                "name": "False Appearance (Object Form Only)",
+                "description": "While the mimic remains motionless, it is indistinguishable from an ordinary object."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Knucklehead Trout",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Knucklehead Trout is a small fish with a peculiar appearance, characterized by a prominent, bony growth on its head. It is commonly found in freshwater lakes and rivers, often darting swiftly through the water in search of prey.",
+        "tokenURL": "https://5e.tools/img/IDRotF/Knucklehead%20Trout.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "2d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 0
+            },
+            {
+                "type": "Swim",
+                "value": 30
+            }
+        ],
+        "ac": 12,
+        "strength": 14,
+        "dexterity": 14,
+        "constitution": 11,
+        "intelligence": 1,
+        "wisdom": 6,
+        "charisma": 1,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 8
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1d4 + 2",
+                "damagetype": "piercing"
+            },
+            {
+                "name": "Tail",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1d4 + 2",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Water Breathing",
+                "description": "The trout can breathe only underwater."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Kobold Commoner",
+        "tags": ["Small", "Humanoid (Kobold)", "Any Alignment"],
+        "description": "The Kobold Commoner is a small reptilian creature that resembles a humanoid dragon. It is a member of the kobold race known for its servitude and often found in large groups, working together to survive in harsh environments.",
+        "tokenURL": "https://5e.tools/img/TftYP/Kobold%20Commoner.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 10,
+        "strength": 10,
+        "dexterity": 10,
+        "constitution": 10,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Common", "Draconic"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Club",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": "1d4 - 1",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Pack Tactics",
+                "description": "The kobold commoner has advantage on an attack roll against a creature if at least one of their allies is within 5 feet of the creature and the ally isn't incapacitated."
+            },
+            {
+                "name": "Sunlight Sensitivity",
+                "description": "While in sunlight, the kobold commoner has disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Lemure",
+        "tags": ["Medium", "Fiend (Devil)", "Lawful Evil"],
+        "description": "The Lemure is a wretched, malformed creature that resembles a melted and twisted humanoid. It is one of the lowest forms of devil, bound to serve more powerful devils in the Nine Hells. Lemures are mindless and exist solely to carry out their masters' orders.",
+        "tokenURL": "https://5e.tools/img/MM/Lemure.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "3d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 15
+            }
+        ],
+        "ac": 7,
+        "strength": 10,
+        "dexterity": 5,
+        "constitution": 11,
+        "intelligence": 1,
+        "wisdom": 11,
+        "charisma": 3,
+        "dmgResistances": ["cold"],
+        "dmgVulnerabilities": null,
+        "dmgImmunities": ["fire", "poison"],
+        "conditionImmunities": ["charmed", "frightened", "poisoned"],
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "120 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Infernal"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Fist",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+3",
+                "damage": "1d4",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Devil's Sight",
+                "description": "Magical darkness doesn't impede the lemure's darkvision."
+            },
+            {
+                "name": "Hellish Rejuvenation",
+                "description": "A lemure that dies in the Nine Hells comes back to life with all its hit points in 1d10 days unless it is killed by a good-aligned creature with a bless spell cast on that creature or its remains are sprinkled with holy water."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Living Unseen Servant",
+        "tags": ["Medium", "Construct", "Unaligned"],
+        "description": "The Living Unseen Servant is a magical construct created to perform menial tasks. It appears as an ethereal and translucent figure, typically resembling a humanoid. Although it lacks sentience, it can follow basic commands and assist with various chores.",
+        "tokenURL": "https://5e.tools/img/WDMM/Living%20Unseen%20Servant.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 10,
+        "strength": 2,
+        "dexterity": 10,
+        "constitution": 11,
+        "intelligence": 1,
+        "wisdom": 10,
+        "charisma": 1,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": ["poison"],
+        "conditionImmunities": ["exhaustion", "paralyzed", "petrified", "poisoned", "unconscious"],
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "60 ft.",
+                "additionalDetails": "The Living Unseen Servant is blind beyond this radius."
+            },
+            {
+                "name": "Passive Perception",
+                "value": 12
+            }
+        ],
+        "languages": {
+            "understands": ["Common"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Slam",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Invisibility",
+                "description": "The unseen servant is invisible."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Lizard",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Lizard is a small reptilian creature with scaly skin and a long tail. It is commonly found in warm climates, such as jungles or deserts. Lizards are known for their agility and ability to climb various surfaces.",
+        "tokenURL": "https://5e.tools/img/MM/Lizard.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Climb",
+                "value": 20
+            }
+        ],
+        "ac": 10,
+        "strength": 2,
+        "dexterity": 11,
+        "constitution": 10,
+        "intelligence": 1,
+        "wisdom": 8,
+        "charisma": 3,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 9
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+0",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": null,
+        "environment": null
+    },
+    {
+        "name": "Magewright",
+        "tags": ["Medium", "Humanoid (Any Race)", "Any Alignment"],
+        "description": "The Magewright is a versatile spellcaster who possesses a limited array of magical abilities. They are often employed as assistants to more experienced wizards or as general utility casters in various professions.",
+        "tokenURL": "https://5e.tools/img/ERLW/Magewright.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "2d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 11,
+        "strength": 11,
+        "dexterity": 13,
+        "constitution": 10,
+        "intelligence": 14,
+        "wisdom": 14,
+        "charisma": 12,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 12
+            }
+        ],
+        "languages": {
+            "understands": ["Common"],
+            "speaks": ["Common", "Language 1", "Language 2"]
+        },
+        "actions": [
+            {
+                "name": "Dagger",
+                "description": "Melee or Ranged Weapon Attack",
+                "attackBonus": "+3",
+                "damage": "1d4 + 1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Spellcasting",
+                "description": "The magewright's spellcasting ability is Intelligence (spell save DC 12). To cast one of its rituals, the magewright must provide additional material components whose value in gold pieces is 20 times the spell's level. These components are consumed when the ritual is finished. The magewright knows the following spells:\n\n- At will: mage hand, prestidigitation\n- Rituals: knock"
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Myconid Sprout",
+        "tags": ["Small", "Plant", "Lawful Neutral"],
+        "description": "The Myconid Sprout is a small, fungus-like creature with a humanoid shape. It is part of a myconid colony, serving as a worker and scout. The Sprout has limited intelligence and is generally peaceful, but it can defend itself if threatened.",
+        "tokenURL": "https://5e.tools/img/MM/Myconid%20Sprout.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "2d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            }
+        ],
+        "ac": 10,
+        "strength": 8,
+        "dexterity": 10,
+        "constitution": 10,
+        "intelligence": 8,
+        "wisdom": 11,
+        "charisma": 5,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "120 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Fist",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+1",
+                "damage": {
+                    "bludgeoning": "1d4 - 1",
+                    "poison": "1d4"
+                },
+                "damagetype": ["bludgeoning", "poison"]
+            },
+            {
+                "name": "Rapport Spores (3/Day)",
+                "description": "A 10-foot radius of spores extends from the myconid. These spores can go around corners and affect only creatures with an Intelligence of 2 or higher that aren't undead, constructs, or elementals. Affected creatures can communicate telepathically with one another while they are within 30 feet of each other. The effect lasts for 1 hour."
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Distress Spores",
+                "description": "When the myconid takes damage, all other myconids within 240 feet of it can sense its pain."
+            },
+            {
+                "name": "Sun Sickness",
+                "description": "While in sunlight, the myconid has disadvantage on ability checks, attack rolls, and saving throws. The myconid dies if it spends more than 1 hour in direct sunlight."
+            }
+        ],
+        "environment": ["Underdark"]
+    },
+    {
+        "name": "Octopus",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Octopus is a small marine creature with a soft body and eight tentacles. It is known for its ability to camouflage itself and its dexterity in capturing prey. It primarily dwells in oceanic environments, utilizing its unique features for survival.",
+        "tokenURL": "https://5e.tools/img/MM/Octopus.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 5
+            },
+            {
+                "type": "Swim",
+                "value": 30
+            }
+        ],
+        "ac": 12,
+        "strength": 4,
+        "dexterity": 15,
+        "constitution": 11,
+        "intelligence": 3,
+        "wisdom": 10,
+        "charisma": 4,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 12
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Tentacles",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1",
+                "damagetype": "bludgeoning"
+            },
+            {
+                "name": "Ink Cloud",
+                "description": "Recharges after a Short or Long Rest",
+                "attackBonus": null,
+                "damage": null,
+                "damagetype": null
+            }
+        ],
+        "bonusActions": [
+            {
+                "name": "Dash",
+                "description": "The octopus can use the Dash action as a bonus action."
+            }
+        ],
+        "specialAbilities": [
+            {
+                "name": "Hold Breath",
+                "description": "While out of water, the octopus can hold its breath for 30 minutes."
+            },
+            {
+                "name": "Underwater Camouflage",
+                "description": "The octopus has advantage on Dexterity (Stealth) checks made while underwater."
+            },
+            {
+                "name": "Water Breathing",
+                "description": "The octopus can breathe only underwater."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Orc Commoner",
+        "tags": ["Medium", "Humanoid", "Orc", "Any Alignment"],
+        "description": "The Orc Commoner is an average member of the orc race, often found in settlements or tribes. They lack specialized combat training and are typically focused on daily tasks and survival.",
+        "tokenURL": "https://5e.tools/img/TftYP/Orc%20Commoner.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 10,
+        "strength": 10,
+        "dexterity": 10,
+        "constitution": 10,
+        "intelligence": 10,
+        "wisdom": 10,
+        "charisma": 10,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Common", "Orc"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Club",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d4",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": [
+            {
+                "name": "Aggressive",
+                "description": "As a bonus action, the orc commoner can move up to their speed toward a hostile creature that they can see."
+            }
+        ],
+        "specialAbilities": null,
+        "environment": null
+    },
+    {
+        "name": "Owl",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Owl is a small bird of prey known for its silent flight and exceptional night vision. It is often found in arctic and forest environments, silently swooping down on unsuspecting prey.",
+        "tokenURL": "https://5e.tools/img/MM/Owl.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 5
+            },
+            {
+                "type": "Fly",
+                "value": 60
+            }
+        ],
+        "ac": 11,
+        "strength": 3,
+        "dexterity": 13,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 12,
+        "charisma": 7,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "120 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Talons",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+3",
+                "damage": "1",
+                "damagetype": "slashing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Flyby",
+                "description": "The owl doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+            },
+            {
+                "name": "Keen Hearing and Sight",
+                "description": "The owl has advantage on Wisdom (Perception) checks that rely on hearing or sight."
+            }
+        ],
+        "environment": ["Arctic", "Forest"]
+    },
+    {
+        "name": "Paper Bird",
+        "tags": ["Tiny", "Construct", "Unaligned"],
+        "description": "The Paper Bird is a delicate construct shaped like a bird, made entirely out of folded paper. It possesses keen sight and nimble flight, but lacks physical strength and durability.",
+        "tokenURL": "https://5e.tools/img/WBtW/Paper%20Bird.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 60
+            }
+        ],
+        "ac": 13,
+        "strength": 5,
+        "dexterity": 16,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 14,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": ["fire"],
+        "dmgImmunities": ["poison", "psychic"],
+        "conditionImmunities": ["charmed", "exhaustion", "frightened", "poisoned"],
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 14
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Sharp Edges",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "slashing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Sight",
+                "description": "The paper bird has advantage on Wisdom (Perception) checks that rely on sight."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Peacock",
+        "tags": ["Medium", "Beast", "Unaligned"],
+        "description": "The Peacock is a majestic bird known for its vibrant and colorful plumage. It possesses keen senses and uses its beak as a weapon when threatened.",
+        "tokenURL": "https://5e.tools/img/BGDIA/Peacock.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d8 + 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 50
+            }
+        ],
+        "ac": 10,
+        "strength": 7,
+        "dexterity": 10,
+        "constitution": 13,
+        "intelligence": 2,
+        "wisdom": 12,
+        "charisma": 4,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Beak",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1d4",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Sight and Smell",
+                "description": "The peacock has advantage on Wisdom (Perception) checks that rely on sight or smell."
+            },
+            {
+                "name": "Pack Tactics",
+                "description": "The peacock has advantage on an attack roll against a creature if at least one of the peacock's allies is within 5 feet of the creature and the ally isn't incapacitated."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Quipper",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Quipper is a small, aggressive fish known for its sharp teeth and voracious appetite. It often travels in schools and is commonly found in underwater environments, preying on smaller creatures.",
+        "tokenURL": "https://5e.tools/img/MM/Quipper.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 0
+            },
+            {
+                "type": "Swim",
+                "value": 40
+            }
+        ],
+        "ac": 13,
+        "strength": 2,
+        "dexterity": 16,
+        "constitution": 9,
+        "intelligence": 1,
+        "wisdom": 7,
+        "charisma": 2,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 8
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Blood Frenzy",
+                "description": "The quipper has advantage on melee attack rolls against any creature that doesn't have all its hit points."
+            },
+            {
+                "name": "Water Breathing",
+                "description": "The quipper can breathe only underwater."
+            }
+        ],
+        "environment": ["Underwater"]
+    },
+    {
+        "name": "Rat",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Rat is a small rodent commonly found in swamps and urban areas. It scurries through narrow spaces and feeds on scraps of food, often considered a nuisance by many.",
+        "tokenURL": "https://5e.tools/img/MM/Rat.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            }
+        ],
+        "ac": 10,
+        "strength": 2,
+        "dexterity": 11,
+        "constitution": 9,
+        "intelligence": 2,
+        "wisdom": 10,
+        "charisma": 4,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+0",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Smell",
+                "description": "The rat has advantage on Wisdom (Perception) checks that rely on smell."
+            }
+        ],
+        "environment": ["Swamp", "Urban"]
+    },
+    {
+        "name": "Raven",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Raven is a small, black bird known for its keen intelligence and ability to mimic sounds. Often found in forests and urban areas, it is a symbol of mystery and wisdom.",
+        "tokenURL": "https://5e.tools/img/MM/Raven.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 50
+            }
+        ],
+        "ac": 12,
+        "strength": 2,
+        "dexterity": 14,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 12,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 13
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Beak",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Mimicry",
+                "description": "The raven can mimic simple sounds it has heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Rooster",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Rooster is a small domesticated bird known for its colorful plumage and distinctive crowing. It is often found in rural and farm areas, serving as an alarm clock with its loud calls at the break of dawn.",
+        "tokenURL": "https://5e.tools/img/JttRC/Rooster.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            }
+        ],
+        "ac": 13,
+        "strength": 5,
+        "dexterity": 16,
+        "constitution": 8,
+        "intelligence": 2,
+        "wisdom": 14,
+        "charisma": 6,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 14
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Talons",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "slashing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Keen Sight",
+                "description": "The rooster has advantage on Wisdom (Perception) checks that rely on sight."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Scorpion",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Scorpion is a small arachnid with a venomous stinger at the end of its tail. It is commonly found in desert environments, where it uses its keen sense of vibration to locate prey and defend itself.",
+        "tokenURL": "https://5e.tools/img/MM/Scorpion.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            }
+        ],
+        "ac": 11,
+        "strength": 2,
+        "dexterity": 11,
+        "constitution": 8,
+        "intelligence": 1,
+        "wisdom": 8,
+        "charisma": 2,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "10 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 9
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Sting",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1 piercing",
+                "damagetype": "poison",
+                "additionalDetails": "The target must make a DC 9 Constitution saving throw, taking 4 (1d8) poison damage on a failed save, or half as much damage on a successful one."
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": null,
+        "environment": ["Desert"]
+    },
+    {
+        "name": "Scufflecup Teacup",
+        "tags": ["Tiny", "Construct", "Unaligned"],
+        "description": "The Scufflecup Teacup is a tiny construct resembling a delicate teacup with small legs. It is a curious and mischievous creature that is often found scuttling around, causing small disturbances and spilling tea.",
+        "tokenURL": "https://5e.tools/img/SCC/Scufflecup%20Teacup.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "2d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            }
+        ],
+        "ac": 12,
+        "strength": 4,
+        "dexterity": 14,
+        "constitution": 10,
+        "intelligence": 3,
+        "wisdom": 3,
+        "charisma": 1,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": ["poison"],
+        "conditionImmunities": ["blinded", "exhaustion", "poisoned"],
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "30 ft.",
+                "additionalDetails": "The Scufflecup Teacup is blind beyond this radius."
+            },
+            {
+                "name": "Passive Perception",
+                "value": 6
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Slam",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1d3 + 2",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": null,
+        "environment": null
+    },
+    {
+        "name": "Seal",
+        "tags": ["Medium", "Beast", "Unaligned"],
+        "description": "The Seal is a medium-sized aquatic creature with a streamlined body and flippers. It is known for its playful nature and its ability to move gracefully both in water and on land.",
+        "tokenURL": "https://5e.tools/img/IDRotF/Seal.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "2d8",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Swim",
+                "value": 40
+            }
+        ],
+        "ac": 11,
+        "strength": 10,
+        "dexterity": 12,
+        "constitution": 11,
+        "intelligence": 3,
+        "wisdom": 12,
+        "charisma": 5,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 11
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+2",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Hold Breath",
+                "description": "The seal can hold its breath for 15 minutes."
+            },
+            {
+                "name": "Keen Smell",
+                "description": "The seal has advantage on Wisdom (Perception) checks that rely on smell."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Sorrowfish",
+        "tags": ["Tiny", "Aberration", "Unaligned"],
+        "description": "The Sorrowfish is a small, aquatic aberration that dwells in deep, dark waters. It appears as a translucent, fish-like creature with sad, mournful eyes. Its presence brings an eerie sense of unease and sorrow to those who encounter it.",
+        "tokenURL": "https://5e.tools/img/CRCotN/Sorrowfish.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 0
+            },
+            {
+                "type": "Swim",
+                "value": 40
+            }
+        ],
+        "ac": 13,
+        "strength": 2,
+        "dexterity": 16,
+        "constitution": 9,
+        "intelligence": 1,
+        "wisdom": 7,
+        "charisma": 2,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": ["psychic"],
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 8
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Blood Frenzy",
+                "description": "The sorrowfish has advantage on melee attack rolls against any creature that doesn't have all its hit points."
+            },
+            {
+                "name": "Water Breathing",
+                "description": "The Sorrowfish can breathe only underwater."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Space Guppy",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Space Guppy is a small extraterrestrial creature resembling a fish with translucent wings. It is adapted to survive in the vacuum of space, generating an air envelope around itself to provide oxygen. Despite its fragile appearance, it possesses remarkable agility and can maneuver effortlessly in zero gravity.",
+        "tokenURL": "https://5e.tools/img/BAM/Space%20Guppy.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 0
+            },
+            {
+                "type": "Fly",
+                "value": 30
+            }
+        ],
+        "ac": 13,
+        "strength": 3,
+        "dexterity": 16,
+        "constitution": 10,
+        "intelligence": 1,
+        "wisdom": 10,
+        "charisma": 1,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "60 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Tail Slap",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+5",
+                "damage": "1",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Air Envelope",
+                "description": "If it has at least 1 hit point, the guppy can generate an air envelope around itself when in a vacuum. This air envelope can sustain the guppy and one other Tiny creature in its space indefinitely."
+            },
+            {
+                "name": "Flyby",
+                "description": "The guppy doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Space Mollymawk",
+        "tags": ["Small", "Beast", "Unaligned"],
+        "description": "The Space Mollymawk is a small avian creature native to the astral planes. With its sleek feathers and streamlined body, it is well-suited for navigating the vastness of outer space. It is known for its keen eyesight and ability to soar effortlessly through zero gravity.",
+        "tokenURL": "https://5e.tools/img/BAM/Space%20Mollymawk.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d6",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 10
+            },
+            {
+                "type": "Fly",
+                "value": 50
+            }
+        ],
+        "ac": 12,
+        "strength": 6,
+        "dexterity": 14,
+        "constitution": 11,
+        "intelligence": 3,
+        "wisdom": 12,
+        "charisma": 3,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Passive Perception",
+                "value": 15
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1d4 + 2",
+                "damagetype": "piercing"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Flyby",
+                "description": "The mollymawk doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+            },
+            {
+                "name": "Hold Breath",
+                "description": "The mollymawk can hold its breath for 15 minutes."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Spider",
+        "tags": ["Tiny", "Beast", "Unaligned"],
+        "description": "The Spider is a small arachnid with eight legs and a venomous bite. It is known for its ability to climb surfaces effortlessly and its web-spinning capabilities.",
+        "tokenURL": "https://5e.tools/img/MM/Spider.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4 - 1",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 20
+            },
+            {
+                "type": "Climb",
+                "value": 20
+            }
+        ],
+        "ac": 12,
+        "strength": 2,
+        "dexterity": 14,
+        "constitution": 8,
+        "intelligence": 1,
+        "wisdom": 10,
+        "charisma": 2,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": null,
+        "conditionImmunities": null,
+        "senses": [
+            {
+                "name": "Darkvision",
+                "range": "30 ft.",
+                "additionalDetails": null
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": null,
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Bite",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+4",
+                "damage": "1",
+                "damagetype": "piercing and poison"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Spider Climb",
+                "description": "The spider can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+            },
+            {
+                "name": "Web Sense",
+                "description": "While in contact with a web, the spider knows the exact location of any other creature in contact with the same web."
+            },
+            {
+                "name": "Web Walker",
+                "description": "The spider ignores movement restrictions caused by webbing."
+            }
+        ],
+        "environment": null
+    },
+    {
+        "name": "Stomping Foot",
+        "tags": ["Tiny", "Undead", "Neutral Evil"],
+        "description": "The Stomping Foot is a detached foot that hops and stomps its way around. It is an undead creature animated by dark magic, seeking to crush its enemies under its weight.",
+        "tokenURL": "https://5e.tools/img/OoW/Stomping%20Foot.png",
+        "challengerating": 0,
+        "xp": 10,
+        "proficiencyBonus": "+2",
+        "health": "1d4",
+        "movement": [
+            {
+                "type": "Speed",
+                "value": 30
+            }
+        ],
+        "ac": 12,
+        "strength": 13,
+        "dexterity": 14,
+        "constitution": 11,
+        "intelligence": 5,
+        "wisdom": 10,
+        "charisma": 4,
+        "dmgResistances": null,
+        "dmgVulnerabilities": null,
+        "dmgImmunities": ["poison"],
+        "conditionImmunities": ["charmed", "exhaustion", "poisoned"],
+        "senses": [
+            {
+                "name": "Blindsight",
+                "range": "30 ft.",
+                "additionalDetails": "The Stomping Foot is blind beyond this radius."
+            },
+            {
+                "name": "Passive Perception",
+                "value": 10
+            }
+        ],
+        "languages": {
+            "understands": ["Common"],
+            "speaks": null
+        },
+        "actions": [
+            {
+                "name": "Stomp",
+                "description": "Melee Weapon Attack",
+                "attackBonus": "+3",
+                "damage": "1d4 + 1",
+                "damagetype": "bludgeoning"
+            }
+        ],
+        "bonusActions": null,
+        "specialAbilities": [
+            {
+                "name": "Turn Immunity",
+                "description": "The foot is immune to effects that turn undead."
+            }
+        ],
+        "environment": null
+    }          
+]    

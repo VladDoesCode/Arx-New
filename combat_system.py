@@ -12,27 +12,41 @@ from term_image.image import AutoImage  # term_image used for converting image i
 import requests  # Used for making HTTP requests to fetch images
 from io import BytesIO  # Used to read binary streams
 import shutil  # High-level file operations
+import textwrap  # Used for wrapping text to fit the terminal window
 
+# Get the width of the terminal window
+terminal_width, _ = shutil.get_terminal_size()
+
+# Set the wrap length to 1/4 of the terminal width
+wrap_length = int(terminal_width / 4)
+config = {
+    "html.format.wrapLineLength": wrap_length
+}
 
 # Function to parse the damage string and calculate the total damage
-def parse_damage(damage_string):
-    # Check if damage_string contains 'd' which implies a dice expression
-    if "d" in damage_string:
-        # Split the string into dice and modifier parts
-        split_parts = re.split("\+|-", damage_string)
-        dice_part = split_parts[0]
+def parse_damage(damage):
+    if "d" in damage:
+        # Split the string into the dice expression and the modifier
+        split_parts = damage.split(" ")
+        dice_expression = split_parts[0]
         # Default modifier to 0 if not present
-        modifier_part = split_parts[1] if len(split_parts) > 1 else '0'
-        # Extract the number of dice and the type of dice
-        dice_count, dice_value = map(int, dice_part.split("d"))
-        modifier = int(modifier_part)
-        # If the original string had a '-' make the modifier negative
-        modifier = -modifier if "-" in damage_string else modifier
+        modifier = split_parts[1] if len(split_parts) > 1 else '0'
+        # Split the modifier into its sign and value using regular expressions
+        match = re.match(r"([-+]?)(\d+)", modifier)
+        if match:
+            sign, value = match.groups()
+        else:
+            sign, value = "+", "0"
+        # Split the dice expression into the number of dice and the type of dice
+        dice_count, dice_value = map(int, dice_expression.split("d"))
         # Roll the dice and calculate the total damage
-        return sum(random.randint(1, dice_value) for _ in range(dice_count)) + modifier
+        damage_roll = sum(random.randint(1, dice_value) for _ in range(dice_count))
+        # Apply the modifier to the damage roll
+        damage_roll += int(sign + value)
+        return damage_roll
     else:
         # If a fixed damage amount, simply convert it to an integer
-        return int(damage_string)
+        return int(damage)
 
 
 # Function to crop the image to remove blank spaces
@@ -64,6 +78,7 @@ def combat(player, monsters):
 
     # Display the monster encounter message and render the monster image
     slow_type(f"\nYou have encountered a {monster['name']}! Prepare for battle...", styles=["bold", "italic", "red", "underline"])
+    slow_type("Description: " + textwrap.fill(monster['description'], wrap_length), speed=0.006)
     slow_type("\n" + image_str + "\n", speed=0.00005)
 
     # Calculate initiative to determine turn order
@@ -100,15 +115,17 @@ def combat(player, monsters):
             if player_action in ['attack', 'a']:
                 # Display available weapons
                 for i, weapon in enumerate(player.weapons):
-                    slow_type(f"{i + 1}. {weapon['name']} - Damage: {weapon['damage']}")
+                    slow_type(f"{i + 1}. {weapon['name']} - Damage: {Fore.YELLOW}{weapon['damage']}{Fore.RESET} - Attack Bonus: {Fore.YELLOW}{weapon['attack_bonus']}{Fore.RESET}")
+
 
                 # Ask player for weapon choice using player_input function
                 weapon_choice = player_input("Choose a weapon (enter the corresponding number): ", range(1, len(player.weapons) + 1), is_numeric=True)
+                print()
 
                 # Simulate an attack roll
                 random_roll = random.randint(1, 20)
                 attack_roll = random_roll + int(player.actions[weapon_choice - 1]['attack_bonus']) # type: ignore
-                slow_type(f"You rolled a {Fore.GREEN if attack_roll >= monster['ac'] else Fore.RED}{Style.BRIGHT}{attack_roll}{Fore.RESET} against the {monster['name']}'s armor class of {Fore.RED if attack_roll >= monster['ac'] else Fore.GREEN}{Style.BRIGHT}{monster['ac']}{Fore.RESET}!")
+                slow_type(f"You rolled a {Fore.GREEN if attack_roll >= monster['ac'] else Fore.RED}{Style.BRIGHT}{attack_roll}{Fore.RESET} (D20:{random_roll} + Attack Bonus:{int(player.actions[weapon_choice - 1]['attack_bonus'])}) against the {monster['name']}'s armor class of {Fore.RED if attack_roll >= monster['ac'] else Fore.GREEN}{Style.BRIGHT}{monster['ac']}{Fore.RESET}!")
 
                 # Check if the attack hits
                 if attack_roll >= monster['ac']:
@@ -119,11 +136,11 @@ def combat(player, monsters):
                     # Determine attack flavor text based on weapon properties
                     weapon_property = player.weapons[weapon_choice - 1]['property'] # type: ignore
                     if weapon_property is None or weapon_property == 'Versatile':
-                        slow_type(f"You swing your {player.weapons[weapon_choice - 1]['name']} with might and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"]) # type: ignore
+                        slow_type(f"You swing your {player.weapons[weapon_choice - 1]['name']} with might and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!") # type: ignore
                     elif weapon_property == 'Thrown':
-                        slow_type(f"You throw your {player.weapons[weapon_choice - 1]['name']} with pinpoint precision and land it into the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"]) # type: ignore
+                        slow_type(f"You throw your {player.weapons[weapon_choice - 1]['name']} with pinpoint precision and land it into the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!") # type: ignore
                     elif weapon_property == 'Ranged':
-                        slow_type(f"You shoot your {player.weapons[weapon_choice - 1]['name']} with great accuracy and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!", styles=["bold"]) # type: ignore
+                        slow_type(f"You shoot your {player.weapons[weapon_choice - 1]['name']} with great accuracy and strike the {monster['name']} for {Fore.RED}{player_damage}{Fore.RESET} damage!") # type: ignore
 
                     # Display health bars after player's turn
                     display_healthbars(player, monster, monsterMaxHealth, monsterCurrentHealth)
@@ -176,15 +193,16 @@ def combat(player, monsters):
                 # Check if monster has actions and execute them
                 if 'actions' in monster and len(monster['actions']):
                     # Simulate an attack roll
-                    monster_attack_roll = random.randint(1, 20) + int(monster['actions'][0]['attackBonus'])
-                    slow_type(f"The {monster['name']} rolled a {Fore.GREEN if monster_attack_roll >= player.ac else Fore.RED}{Style.BRIGHT}{monster_attack_roll}{Style.RESET_ALL} against your armor class of {Fore.RED if monster_attack_roll >= player.ac else Fore.GREEN}{Style.BRIGHT}{player.ac}{Style.RESET_ALL}!")
+                    d20_roll = random.randint(1, 20)
+                    monster_attack_roll = d20_roll + int(monster['actions'][0]['attackBonus'])
+                    slow_type(f"The {monster['name']} rolled a {Fore.GREEN if monster_attack_roll >= player.ac else Fore.RED}{Style.BRIGHT}{monster_attack_roll}{Style.RESET_ALL} (D20:{d20_roll} + Attack Bonus:{int(monster['actions'][0]['attackBonus'])}) against your armor class of {Fore.RED if monster_attack_roll >= player.ac else Fore.GREEN}{Style.BRIGHT}{player.ac}{Style.RESET_ALL}!")
 
                     # Check if the attack hits
                     if monster_attack_roll >= player.ac:
                         # Calculate and apply damage
                         player_damage = parse_damage(monster['actions'][0]['damage'])
                         player.health -= player_damage
-                        slow_type(f"The {monster['name']} lunged at you, landing a heavy blow and dealing {Fore.RED}{player_damage}{Fore.RESET} damage!")
+                        slow_type(f"The {monster['name']} lunged at you, attacking you with \x1B[4m{monster['actions'][0]['name']} and dealing{Style.RESET_ALL} {Fore.RED}{player_damage}{Fore.RESET} damage!")
                         # Display health bars after monster's turn if they hit
                         display_healthbars(player, monster, monsterMaxHealth, monsterCurrentHealth)
                     else:

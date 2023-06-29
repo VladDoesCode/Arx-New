@@ -220,17 +220,17 @@ class Character:
     def choose_weapons(self):
         """Choose weapons for the character."""
         weapons = [
-            {'name': 'Short Sword', 'damage': '1d6', 'type': 'piercing', 'property': 'Finesse'},
-            {'name': 'Long Sword', 'damage': '1d8', 'type': 'slashing', 'property': None},
-            {'name': 'Dagger', 'damage': '1d4', 'type': 'piercing', 'property': 'Finesse'},
-            {'name': 'Battleaxe', 'damage': '1d8', 'type': 'slashing', 'property': None},
-            {'name': 'Handaxe', 'damage': '1d6', 'type': 'slashing', 'property': None},
-            {'name': 'Javelin', 'damage': '1d6', 'type': 'piercing', 'property': 'Thrown'},
-            {'name': 'Mace', 'damage': '1d6', 'type': 'bludgeoning', 'property': None},
-            {'name': 'Quarterstaff', 'damage': '1d6', 'type': 'bludgeoning', 'property': 'Versatile'},
-            {'name': 'Spear', 'damage': '1d6', 'type': 'piercing', 'property': 'Thrown'},
-            {'name': 'Light Crossbow', 'damage': '1d8', 'type': 'piercing', 'property': 'Ranged'},
-            {'name': 'Shortbow', 'damage': '1d6', 'type': 'piercing', 'property': 'Ranged'},
+            {'name': 'Short Sword', 'damage': '1d6', 'type': 'piercing', 'property': 'Finesse', 'attack_bonus': max(self.modifier(self.attributes['Strength']), self.modifier(self.attributes['Dexterity']))},
+            {'name': 'Long Sword', 'damage': '1d8', 'type': 'slashing', 'property': None, 'attack_bonus': self.modifier(self.attributes['Strength'])},
+            {'name': 'Dagger', 'damage': '1d4', 'type': 'piercing', 'property': 'Finesse', 'attack_bonus': max(self.modifier(self.attributes['Strength']), self.modifier(self.attributes['Dexterity']))},
+            {'name': 'Battleaxe', 'damage': '1d8', 'type': 'slashing', 'property': None, 'attack_bonus': self.modifier(self.attributes['Strength'])},
+            {'name': 'Handaxe', 'damage': '1d6', 'type': 'slashing', 'property': None, 'attack_bonus': self.modifier(self.attributes['Strength'])},
+            {'name': 'Javelin', 'damage': '1d6', 'type': 'piercing', 'property': 'Thrown', 'attack_bonus': self.modifier(self.attributes['Strength'])},
+            {'name': 'Mace', 'damage': '1d6', 'type': 'bludgeoning', 'property': None, 'attack_bonus': self.modifier(self.attributes['Strength'])},
+            {'name': 'Quarterstaff', 'damage': '1d6', 'type': 'bludgeoning', 'property': 'Versatile', 'attack_bonus': self.modifier(self.attributes['Strength'])},
+            {'name': 'Spear', 'damage': '1d6', 'type': 'piercing', 'property': 'Thrown', 'attack_bonus': self.modifier(self.attributes['Strength'])},
+            {'name': 'Light Crossbow', 'damage': '1d8', 'type': 'piercing', 'property': 'Ranged', 'attack_bonus': self.modifier(self.attributes['Dexterity'])},
+            {'name': 'Shortbow', 'damage': '1d6', 'type': 'piercing', 'property': 'Ranged', 'attack_bonus': self.modifier(self.attributes['Dexterity'])},
         ]
 
         chosen_weapons = []
