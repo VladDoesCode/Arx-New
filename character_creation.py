@@ -72,12 +72,12 @@ class Character:
             ["XP", self.xp],
             ["AC", Fore.BLUE + str(self.ac) + Fore.RESET],
             ["HP", Fore.GREEN + str(self.health) + "/" + str(self.max_health) + Fore.RESET],
-            ["STR", str(self.attributes['Strength']) + " (" + str(self.modifier(self.attributes['Strength'])) + ")"],
-            ["DEX", str(self.attributes['Dexterity']) + " (" + str(self.modifier(self.attributes['Dexterity'])) + ")"],
-            ["CON", str(self.attributes['Constitution']) + " (" + str(self.modifier(self.attributes['Constitution'])) + ")"],
-            ["INT", str(self.attributes['Intelligence']) + " (" + str(self.modifier(self.attributes['Intelligence'])) + ")"],
-            ["WIS", str(self.attributes['Wisdom']) + " (" + str(self.modifier(self.attributes['Wisdom'])) + ")"],
-            ["CHA", str(self.attributes['Charisma']) + " (" + str(self.modifier(self.attributes['Charisma'])) + ")"]
+            ["STR", str(self.attributes['Strength']) + " (" + ("+" if self.modifier(self.attributes['Strength']) > 0 else "") + str(self.modifier(self.attributes['Strength'])) + ")"],
+            ["DEX", str(self.attributes['Dexterity']) + " (" + ("+" if self.modifier(self.attributes['Dexterity']) > 0 else "") + str(self.modifier(self.attributes['Dexterity'])) + ")"],
+            ["CON", str(self.attributes['Constitution']) + " (" + ("+" if self.modifier(self.attributes['Constitution']) > 0 else "") + str(self.modifier(self.attributes['Constitution'])) + ")"],
+            ["INT", str(self.attributes['Intelligence']) + " (" + ("+" if self.modifier(self.attributes['Intelligence']) > 0 else "") + str(self.modifier(self.attributes['Intelligence'])) + ")"],
+            ["WIS", str(self.attributes['Wisdom']) + " (" + ("+" if self.modifier(self.attributes['Wisdom']) > 0 else "") + str(self.modifier(self.attributes['Wisdom'])) + ")"],
+            ["CHA", str(self.attributes['Charisma']) + " (" + ("+" if self.modifier(self.attributes['Charisma']) > 0 else "") + str(self.modifier(self.attributes['Charisma'])) + ")"]
         ]
 
         # Inventory
@@ -104,7 +104,8 @@ class Character:
 
         # Print table
         bold_header = [Fore.LIGHTYELLOW_EX + Style.BRIGHT + header + Style.RESET_ALL for header in ["Stats", "Values", "Inventory Items", "Quantities"]]
-        print(tabulate(table, headers=bold_header, tablefmt="grid", colalign=("left", "center", "left", "center")))
+        TableText = tabulate(table, headers=bold_header, tablefmt="grid", colalign=("left", "center", "left", "center"))
+        slow_type(TableText, center=True, speed=0.002)
         
         # Wait for user input before continuing
         wait_for_input()
