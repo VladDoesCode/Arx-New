@@ -13,6 +13,7 @@ import requests  # Used for making HTTP requests to fetch images
 from io import BytesIO  # Used to read binary streams
 import shutil  # High-level file operations
 import textwrap  # Used for wrapping text to fit the terminal window
+import subprocess  # Used to execute shell commands
 
 # Get the width of the terminal window
 terminal_width, _ = shutil.get_terminal_size()
@@ -55,7 +56,6 @@ def crop_image(img: Image.Image) -> Image.Image:
     bbox = img.getbbox()
     # Crop the image to the bounding box dimensions
     return img.crop(bbox)
-
 
 # Combat function that simulates a fight between the player and a random monster
 def combat(player, monsters):
@@ -109,7 +109,7 @@ def combat(player, monsters):
             slow_type(f"\n{player.name}'s turn!", styles=["bold", "underline", "green"])
 
             # Ask player for action choice using player_input function
-            player_action = player_input('(Choose an action: Attack, Run, Inventory): ', ['attack', 'run', 'inventory'])
+            player_action = player_input('(Choose an action: Attack, Run, Inventory): ', ['attack', 'run', 'inventory', 'move'])
 
             # Handling attack action
             if player_action in ['attack', 'a']:
@@ -125,7 +125,7 @@ def combat(player, monsters):
                 # Simulate an attack roll
                 random_roll = random.randint(1, 20)
                 attack_roll = random_roll + int(player.actions[weapon_choice - 1]['attack_bonus']) # type: ignore
-                slow_type(f"You rolled a {Fore.GREEN if attack_roll >= monster['ac'] else Fore.RED}{Style.BRIGHT}{attack_roll}{Fore.RESET} (D20:{random_roll} + Attack Bonus:{int(player.actions[weapon_choice - 1]['attack_bonus'])}) against the {monster['name']}'s armor class of {Fore.RED if attack_roll >= monster['ac'] else Fore.GREEN}{Style.BRIGHT}{monster['ac']}{Fore.RESET}!")
+                slow_type(f"You rolled a {Fore.GREEN if attack_roll >= monster['ac'] else Fore.RED}{Style.BRIGHT}{attack_roll}{Fore.RESET} (D20: {random_roll} + Attack Bonus: {int(player.actions[weapon_choice - 1]['attack_bonus'])}){Style.RESET_ALL} against the {monster['name']}'s armor class of {Fore.RED if attack_roll >= monster['ac'] else Fore.GREEN}{Style.BRIGHT}{monster['ac']}{Fore.RESET}!")
 
                 # Check if the attack hits
                 if attack_roll >= monster['ac']:
@@ -178,7 +178,6 @@ def combat(player, monsters):
                 else:
                     slow_type("You have no items in your inventory!")
                     continue
-
             # Handle invalid actions
             else:
                 slow_type("Invalid action!")

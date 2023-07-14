@@ -5,8 +5,10 @@ from utils import slow_type, wait_for_input, player_input, seperator, move_curso
 from items import item_dict
 from colorama import init, Fore, Back, Style
 import json
-import items
+from tabulate import tabulate
 
+# Initialize colorama
+init()
 character_folder = "characters"  # New folder name
 
 class Character:
@@ -28,19 +30,32 @@ class Character:
         self.xp = 0
         self.level = 1
         self.currencies = []
+        self.speed = 30
+        self.movement = [
+            {'name': 'Run', 'distance': self.speed, 'description': f'Run up to {self.speed} feet.'},
+            {'name': 'Dash', 'distance': self.speed, 'description': f'Dash up to {self.speed * 2} feet.'},
+        ]
     
     def add_to_inventory(self, item, quantity=1):
         """Add an item to the character's inventory."""
         item['quantity'] = quantity  # Add the 'quantity' key to the item dictionary
         self.inventory.append(item)  # Append the item to the inventory
+        
+    def get_equipped_items(self):
+        return self.equipped_items
+
+    def set_equipped_items(self, equipped_items):
+        self.equipped_items = equipped_items
 
     def equip_item(self, item):
-        """Equip an item."""
-        self.equipped_items.append(item)
+        equipped_items = self.get_equipped_items()
+        equipped_items.append(item)
+        self.set_equipped_items(equipped_items)
 
     def unequip_item(self, item):
-        """Unequip an item."""
-        self.equipped_items.remove(item)
+        equipped_items = self.get_equipped_items()
+        equipped_items.remove(item) 
+        self.set_equipped_items(equipped_items)
 
     def modifier(self, attribute_value):
         """Calculate the modifier for an attribute value."""
@@ -48,49 +63,49 @@ class Character:
 
     # Show the character's stats
     def show_character_stats(self):
-        # Define header
-        header = ["Name", "Race", "Class", "Attributes", "Actions", "Inventory", "Health", "Level", "XP", "Currencies", "Equipped Items"]
-
-        # Populate the Attributes column
-        attributes_string = '\n'.join([f"{attr}: {value} ({self.modifier(value)})" for attr, value in self.attributes.items()])
-
-        # Populate the Actions column
-        actions_string = '\n'.join([f"{action['name']} (Attack Bonus: {action['attack_bonus']}, Damage: {action['damage']}, Damage Type: {action['type']})" for action in self.actions])
-
-        # Populate the Inventory column
-        inventory_string = '\n'.join([f"{item['name']} ({item['quantity']})" for item in self.inventory])
-
-        # Populate the Currencies column
-        currencies_string = '\n'.join([f"{currency['name']}: {currency['amount']}" for currency in self.currencies])
-
-        # Populate the Equipped Items column
-        equipped_items_string = '\n'.join([f"{item['name']} ({', '.join([f'{stat}: {value}' for stat, value in item['stats'].items()])})" for item in self.equipped_items])
-
-        # Create the table rows
-        rows = [
-            [
-                self.name,
-                self.race,
-                self.character_class,
-                attributes_string,
-                actions_string,
-                inventory_string,
-                f"{self.health}/{self.max_health} {'█' * int(self.health / self.max_health * 10)}{'-' * (10 - int(self.health / self.max_health * 10))}",
-                f"{self.level} {'█' * int(self.xp / self.next_level_experience() * 10)}{'-' * (10 - int(self.xp / self.next_level_experience() * 10))} {self.next_level_experience()}",
-                currencies_string,
-                equipped_items_string
-            ]
+        # Character stats
+        stats = [
+            ["Name", self.name],
+            ["Race", self.race],
+            ["Class", self.character_class],
+            ["Level", self.level],
+            ["XP", self.xp],
+            ["AC", Fore.BLUE + str(self.ac) + Fore.RESET],
+            ["HP", Fore.GREEN + str(self.health) + "/" + str(self.max_health) + Fore.RESET],
+            ["STR", str(self.attributes['Strength']) + " (" + str(self.modifier(self.attributes['Strength'])) + ")"],
+            ["DEX", str(self.attributes['Dexterity']) + " (" + str(self.modifier(self.attributes['Dexterity'])) + ")"],
+            ["CON", str(self.attributes['Constitution']) + " (" + str(self.modifier(self.attributes['Constitution'])) + ")"],
+            ["INT", str(self.attributes['Intelligence']) + " (" + str(self.modifier(self.attributes['Intelligence'])) + ")"],
+            ["WIS", str(self.attributes['Wisdom']) + " (" + str(self.modifier(self.attributes['Wisdom'])) + ")"],
+            ["CHA", str(self.attributes['Charisma']) + " (" + str(self.modifier(self.attributes['Charisma'])) + ")"]
         ]
 
-        # Create the table string
-        table_string = ""
-        for row in rows:
-            for i, cell in enumerate(row):
-                table_string += f"{cell:<20}" if i != len(row) - 1 else f"{cell}\n"
+        # Inventory
+        inventory = {}
+        for item in self.inventory:
+            if item["name"] in inventory:
+                inventory[item["name"]] += item["quantity"]
+            else:
+                inventory[item["name"]] = item["quantity"]
 
-        # Display the table
-        print(table_string)
+        inventory_rows = [[name, str(quantity)] for name, quantity in inventory.items()]
 
+        # Find the maximum length of stats or inventory
+        max_length = max(len(stats), len(inventory_rows))
+
+        # Pad the shorter list to match the length of the longer one
+        stats += [["", ""]] * (max_length - len(stats))
+        inventory_rows += [["", ""]] * (max_length - len(inventory_rows))
+
+        # Combine stats and inventory
+        table = []
+        for i in range(max_length):
+            table.append(stats[i] + inventory_rows[i])
+
+        # Print table
+        bold_header = [Fore.LIGHTYELLOW_EX + Style.BRIGHT + header + Style.RESET_ALL for header in ["Stats", "Values", "Inventory Items", "Quantities"]]
+        print(tabulate(table, headers=bold_header, tablefmt="grid", colalign=("left", "center", "left", "center")))
+        
         # Wait for user input before continuing
         wait_for_input()
 
