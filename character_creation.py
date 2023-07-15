@@ -105,7 +105,7 @@ class Character:
         # Print table
         bold_header = [Fore.LIGHTYELLOW_EX + Style.BRIGHT + header + Style.RESET_ALL for header in ["Stats", "Values", "Inventory Items", "Quantities"]]
         TableText = tabulate(table, headers=bold_header, tablefmt="grid", colalign=("left", "center", "left", "center"))
-        slow_type(TableText, center=True, speed=0.002)
+        slow_type(TableText, center=True, speed=0.001)
         
         # Wait for user input before continuing
         wait_for_input()

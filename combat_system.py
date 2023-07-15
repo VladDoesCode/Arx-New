@@ -78,23 +78,25 @@ def combat(player, monsters):
 
     # Display the monster encounter message and render the monster image
     slow_type(f"\nYou have encountered a {monster['name']}! Prepare for battle...", styles=["bold", "italic", "red", "underline"])
-    slow_type("Description: " + textwrap.fill(monster['description'], wrap_length), speed=0.006)
-    slow_type("\n" + image_str + "\n", speed=0.00005)
+    slow_type("Description: " + textwrap.fill(monster['description'], wrap_length), speed=0.004)
+    slow_type("\n" + image_str + "\n", speed=0.000025)
 
     # Calculate initiative to determine turn order
     playerd20 = random.randint(1, 20)
     monsterd20 = random.randint(1, 20)
     playerInitiative = max(playerd20 + player.modifier(player.attributes['Dexterity']), 1)
     monsterInitiative = max(monsterd20 + player.modifier(monster['dexterity']), 1)
+    
     # Color code for player and monster based on initiative
     playerColor, monsterColor = (Fore.GREEN, Fore.RED) if playerInitiative > monsterInitiative else ((Fore.RED, Fore.GREEN) if playerInitiative < monsterInitiative else (Fore.YELLOW, Fore.YELLOW))
+    
     # Display initiative rolls
     slow_type(f"{player.name} rolled a {playerColor}{Style.BRIGHT}{playerInitiative}{Style.RESET_ALL} \x1B[4m(D20:{playerd20} + Dex Mod:{player.modifier(player.attributes['Dexterity'])}){Style.RESET_ALL} for initiative!")
     slow_type(f"{monster['name']} rolled a {monsterColor}{Style.BRIGHT}{monsterInitiative}{Style.RESET_ALL} \x1B[4m(D20:{monsterd20} + Dex Mod:{player.modifier(monster['dexterity'])}){Style.RESET_ALL} for initiative!")
 
     # Initialize monster health
-    monsterMaxHealth = max(int(parse_damage(monster['health'])), 1)
-    monsterCurrentHealth = monsterMaxHealth
+    monsterMaxHealth, monsterCurrentHealth = max(int(parse_damage(monster['health'])), 1), max(int(parse_damage(monster['health'])), 1)
+
     # Display health bars at the start of combat
     display_healthbars(player, monster, monsterMaxHealth, monsterCurrentHealth)
 
@@ -109,10 +111,15 @@ def combat(player, monsters):
             slow_type(f"\n{player.name}'s turn!", styles=["bold", "underline", "green"])
 
             # Ask player for action choice using player_input function
-            player_action = player_input('(Choose an action: Attack, Run, Inventory): ', ['attack', 'run', 'inventory', 'move'])
+            player_action = player_input('(Choose an action: Move, Action, Bonus Action, Inventory, Show Character Stats, Quit): ', ['move', 'action', 'bonus action', 'inventory', 'show character stats', 'quit'])
 
-            # Handling attack action
-            if player_action in ['attack', 'a']:
+            # Handling movement
+            if player_action == 'move':
+                slow_type("Moving is not implemented yet.")
+                continue
+            
+            # Handling action
+            elif player_action == 'action':
                 # Display available weapons
                 for i, weapon in enumerate(player.weapons):
                     slow_type(f"{i + 1}. {weapon['name']} - Damage: {Fore.YELLOW}{weapon['damage']}{Fore.RESET} - Attack Bonus: {Fore.YELLOW}{weapon['attack_bonus']}{Fore.RESET}")
@@ -147,13 +154,13 @@ def combat(player, monsters):
                 else:
                     slow_type(f"You attempt to use your {player.weapons[weapon_choice - 1]['name']} but miss the {monster['name']}!") # type: ignore
 
-            # Handling run action
-            elif player_action in ['run', 'r']:
-                slow_type("You took a quick glance at the monstrous beast before you and decided discretion was the better part of valor. You quickly made your escape!")
-                return
+            # Handling Bonus Action
+            elif player_action == 'bonus action':
+                slow_type("Bonus Actions are not yet implemented.")
+                continue
 
-            # Handling inventory action
-            elif player_action in ['inventory', 'inv', 'i']:
+            # Handling Inventory
+            elif player_action == 'inventory':
                 # Check if player has items in inventory
                 if len(player.inventory) > 0:
                     # Display available items
@@ -178,7 +185,18 @@ def combat(player, monsters):
                 else:
                     slow_type("You have no items in your inventory!")
                     continue
-            # Handle invalid actions
+                
+            # Handling Show Character Stats
+            elif player_action == 'show character stats':
+                Character.show_character_stats(player)
+                continue
+
+            # Handling Quit
+            elif player_action == 'quit':
+                slow_type("You took a quick glance at the monstrous beast before you and decided discretion was the better part of valor. You quickly made your escape!")
+                return
+
+            # Handle Invalid Actions
             else:
                 slow_type("Invalid action!")
                 continue

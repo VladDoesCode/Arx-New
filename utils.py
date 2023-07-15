@@ -213,15 +213,16 @@ def player_input(prompt, valid_options, is_numeric=False, is_list=False, go_back
     while True:
         # Display the valid options
         if is_list:
-            for i, item in enumerate(valid_options):
-                slow_type(f"{i + 1}. {item}", speed=speed, center=center)
+            for i, item in enumerate(valid_options, start=1):
+                slow_type(f"{i}. {item}", speed=speed, center=center)
             if go_back:
                 slow_type("0. Go Back", speed=speed, center=center)
+
         # Ask the player for input
         slow_type(prompt, new_line=False, styles=styles, center=center, speed=speed)
         response = input().lower().strip()
         if new_line:
-            print('')
+            print()
 
         # Handle 'menu' command
         if response == 'menu':
@@ -242,14 +243,21 @@ def player_input(prompt, valid_options, is_numeric=False, is_list=False, go_back
                 return None
             elif response.isdigit() and 1 <= int(response) <= len(valid_options):
                 return valid_options[int(response) - 1]
-            elif response in valid_options:
-                return response
+            else:
+                # Check if the response matches any valid option (shortened or full)
+                matching_options = [option for option in valid_options if response in str(option).lower()]
+                if matching_options:
+                    return matching_options[0]
         else:
-            if response in valid_options or response in [option[0] for option in valid_options]:
-                return response
+            valid_responses = [option[0] if isinstance(option, tuple) else option for option in valid_options]
+            # Check if the response matches any valid option (shortened or full)
+            matching_responses = [valid_response for valid_response in valid_responses if response in valid_response.lower()]
+            if matching_responses:
+                return matching_responses[0]
 
         # If input is invalid, ask again
         slow_type("Invalid input, please try again.\n", styles=["bold", "red"], center=center)
+
 
 def seperator(first_line=True, last_line=True):
     # Get terminal size

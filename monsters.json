@@ -2909,8 +2909,8 @@
                 "name": "Sting",
                 "description": "Melee Weapon Attack",
                 "attackBonus": "+2",
-                "damage": "1 piercing",
-                "damagetype": "poison",
+                "damage": "1",
+                "damagetype": "piercing and poison",
                 "additionalDetails": "The target must make a DC 9 Constitution saving throw, taking 4 (1d8) poison damage on a failed save, or half as much damage on a successful one."
             }
         ],
